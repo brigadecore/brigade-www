@@ -162,7 +162,7 @@ small {
 #topbar {
   position: absolute;
   width: 100%;
-  height: 92px;
+  height: 106px;
   z-index: 900;
   top: 0;
   left: 0;
@@ -184,7 +184,7 @@ small {
 
   ul {
     padding: 0;
-    margin-top: 1.5rem;
+    margin-top: 2.1rem;
     float: right;
     text-align: right;
 
@@ -206,50 +206,61 @@ small {
 // ---------------------------------------
 //
 #hero {
-  background-color: #EAF3F7;
-  background-image:
-    url('../images/sky.svg'),
-    url('../images/topo-pattern-tile.jpg');
-  background-repeat: no-repeat, repeat;
-  background-position: 30% -15px, 0 0;
+  background-image: 
+    url(../../assets/images/pipes-left.png),
+    url(../../assets/images/pipes-right.png),
+    linear-gradient(-45deg, #93a5cf 0%, #e4efe9 100%);
+  background-repeat: 
+    no-repeat,
+    no-repeat,
+    no-repeat;
+  background-position: 
+    0% 50%,
+    100% 105%,
+    center;
+  background-size: 
+    450px,
+    180px,
+    auto;
   text-align: center;
-  padding: 5em 0;
-  min-height: 480px;
+  padding: 5em 0 0;
+  min-height: 620px;
+  height: 100vh;
   position: relative;
   z-index: 8;
-
-  &:after {
-    display: block;
-    width: 100%;
-    height: 5px;
-    background: $bluem;
-    content: " ";
-    position: absolute;
-    top: 0;
-    z-index: -10;
-    opacity: 0.333;
-  }
+  border-top: 4px solid $bluem;
 
   .titles {
     z-index: 150;
-    transform: translateY(-100%);
-    margin-top: -250px;
-  }
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 
-  h1 {
-    color: $blued;
-    font-size: 3rem;
+    h1 {
+      color: $blued;
+      font-size: 3rem;
+      margin: 0 auto 1.5rem;
 
-    &:after {
-      border: 1px solid white;
-
+      &:after {
+        border: 1px solid white;
+      }
     }
-  }
 
-  h2 {
-    color: $bluem;
-    font-size: 1.125rem;
-    font-family: $work;
+    h2 {
+      color: darken($bluem, 12.5%);
+      font-size: 1rem;
+      background-color: rgba(255,255,255,0.025);
+      max-width: 750px;
+      padding: 0 1.5rem;
+      margin: 0rem auto 7.5rem;
+      line-height: 1.525;
+      font-family: $work;
+      font-size: 1.5rem;
+    }
+
+    .button {
+      margin-top: 3.5em;
+    }
   }
 }
 
@@ -281,6 +292,27 @@ small {
   max-width: 72.5rem;
 }
 
+.button {
+  margin: 1em auto;
+  background: $bluem;
+  font-family: $work;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  padding: 1.333rem 2.825rem;
+  color: white;
+  border-radius: 5em;
+  border: none;
+  @include transition;
+  @include box-shadow(0,2px,14px,rgba(0,0,0,0.02));
+
+  &:hover {
+    background: darken($bluem, 12.5%);
+    color: white;
+    opacity: 0.95;
+  }
+}
+
 .content {
   p,
   li {
@@ -290,28 +322,6 @@ small {
 
   .center {
     text-align: center;
-  }
-
-  .button {
-    margin: 1em auto;
-    background: rgba(255,255,255,0.2) url('../images/tiles/seigaiha.png') repeat 0% 50%;
-    background-attachment: fixed;
-    background-size: 25% 25%;
-    font-family: $klinic;
-    font-weight: bold;
-    font-size: 1.5rem;
-    padding: 0.825rem 3rem;
-    color: $blued;
-    border-radius: 5em;
-    border: none;
-    @include transition;
-    @include box-shadow;
-
-    &:hover {
-      color: $bluem;
-      background-size: 15% 15%;
-      opacity: 0.95;
-    }
   }
 
   img {
@@ -407,9 +417,12 @@ small {
 }
 
 footer {
-  background: white;
+  background: -webkit-linear-gradient(110deg, white 20%, #f0f0f0);
+  background: -o-linear-gradient(110deg, white 20%, #f0f0f0);
+  background: -moz-linear-gradient(110deg, white 20%, #f0f0f0);
+  background: linear-gradient(110deg, white 20%, #f0f0f0);
   color: $mid;
-  padding: 5em 0;
+  padding: 5em 0 2em;
 
   img {
     margin: -1rem 0 1.75rem;
@@ -426,112 +439,112 @@ footer {
       display: inline-block;
     }
   }
-}
 
-@media screen and (max-width: 620px) {
+  p {
+    line-height: 1.825;
+    max-width: 420px;
+  }
 
-  #topbar {
-    height: 150px;
-    overflow: hidden;
+  .project-label {
+    background-color: white;
+    padding: 0.5rem 1.75rem;
+    text-align: right;
+    display: inline-block;
+    float: right;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 12px 1px rgba(0,0,0,0.02);
+    font-size: 0.825rem;
+    border-radius: 3em;
     position: absolute;
-    top: 0;
-    background-color: transparent;
+    top: -1.2rem;
+    right: 1rem;
 
-    &:before {
-      display: none;
+    span {
+      line-height: 1.5;
+
     }
 
-    h1.logo {
+    em {
       position: absolute;
-      left: 50%;
-      max-width: 120px;
-      margin-left: -60px;
+      bottom: -6px;
+      width: 12px;
+      height: 12px;
+      background: white;
+      transform: rotate(45deg);
+      border-right: 1px solid #f0f0f0;
+      border-bottom: 1px solid #f0f0f0;
+      right: 38px;
 
-    }
-
-    ul {
-      float: none !important;
-      text-align: center;
-      margin: 5.75em auto 0;
-
-      li {
-        float: none !important;
-        text-align: center;
-
-        a {
-          margin: 0 1rem;
-
-          &:after {
-            width: 100%;
-            left: 0;
-            background-color:rgba(255,255,255,.5);
-            opacity: 1;
-          }
-        }
+      &:after {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        margin-left: 40px;
+        height: 80px;
+        width: 1px;
+        border-left: 1px dashed darken($bluel, 10%);
+        z-index: 100;
+        transform: rotate(-45deg);
       }
-    }
-
-    &:hover {
-      background-color: transparent;
     }
   }
 
-  #hero {
-    padding: 2em 7.5%;
-    min-height: 200px;
-    background-position: -5% -20px, 0 0;
+  .project-family {
+    padding-top: 3.25rem;
+    text-align: right;
+
+    a {
+      width: 96px;
+      height: 96px;
+      display: block;
+      float: right;
+      border-radius: 50%;
+      text-align: center;
+      margin: 0 0 0 1.5rem;
+      background-color: white;
+      border: 1px solid #f0f0f0;
+      box-shadow: 0 4px 12px 1px rgba(0,0,0,0.02);
+      z-index: 750;
+      position: relative;
+      @include transition;
+
+      &:nth-child(3) img {
+        margin-top: 4px;
+      }
+
+      &:nth-child(2) img {
+        margin-top: -1px;
+      }
+
+      &:first-child img {
+        margin-top: 0px;
+        margin-right: -1px;
+      }
+
+      img {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:hover {
+        border-color: $bluem;
+      }
+    }
 
     &:after {
-      display: none;
-    }
-
-    .titles {
-      transform: translateY(0);
-      margin-top: 180px;
-
-      h2 {
-        font-size: 2rem;
-        line-height: 1.2;
-      }
-
-      h3 {
-        font-size: 1rem;
-      }
-    }
-
-    #draftanimation_hype_container {
-      display: none !important;
-    }
-  }
-
-  #info,
-  .feature,
-  .feature-complexity,
-  .feature-language {
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
-    min-height: 200px;
-
-    h3 {
-      font-size: 2rem;
-    }
-
-    img {
-      display: none;
-    }
-  }
-
-  footer {
-    ul {
-      margin: 1rem 0 2rem 0;
-
-      li {
-        display: inline-block;
-
-        a {
-          margin: 0 1.5rem 0 0;
-        }
-      }
+      content: " ";
+      display: block;
+      position: absolute;
+      right: 2rem;
+      bottom: 51px;
+      height: 1px;
+      width: 55%;
+      border-top: 1px dashed darken($bluel, 10%);
+      z-index: 100;
     }
   }
 }
+
+@import "media.scss"
