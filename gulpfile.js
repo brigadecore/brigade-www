@@ -23,7 +23,7 @@ var gulp = require('gulp'),
   critical = require('critical'),
   inlineCss = require('gulp-inline-css'),
   shell = require('gulp-shell'),
-  deploy = require('gulp-gh-pages'),
+  deployGH = require('gulp-gh-pages'),
   runSequence = require('run-sequence');
 
 
@@ -44,12 +44,12 @@ gulp.task('styles', function () {
 // UnCSS
 gulp.task('styles-uncss', function () {
   return gulp.src('assets/css')
-  .pipe(uncss({
-    html: ['_site/index.html'],
-    timeout: 1000
-  }))
-  .pipe(gulp.dest( '_site/assets/css'))
-  .pipe(notify({message: 'Styles - UnCSS task complete'}))
+    .pipe(uncss({
+      html: '_site/index.html',
+      timeout: 1000
+    }))
+    .pipe(gulp.dest( '_site/assets/'))
+    .pipe(notify({message: 'Styles - UnCSS task complete'}))
 });
 
 // Inline Critical CSS
@@ -86,30 +86,30 @@ gulp.task('images', function () {
   )
 });
 
-// Scripts
-gulp.task('scripts', function () {
-  return gulp.src('assets/draft-animation.hyperesources/draftanimation_hype_generated_script.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest('assets/draft-animation.hyperesources/'))
-    .pipe(gulp.dest('_site/assets/draft-animation.hyperesources/'))
-    .pipe(notify({message: 'Script minify complete'}));
-});
-
 
 // Deploy
+gulp.task('copy', function () {
+  var sourceFiles = ['fonts/**'];
+  return gulp.src(sourceFiles)
+    .pipe(gulp.dest('_site/assets/'))
+    .pipe(notify({message: 'Copied all.'}));
+});
+
 gulp.task('jekyllb', shell.task(['bundle exec jekyll b']));
-gulp.task('deployGH', function() {
+
+gulp.task('deploy-gh-pages', function() {
   return gulp.src('_site/**/*')
-    .pipe(deploy())
+    .pipe(deployGH())
     .pipe(notify({message: 'Site deployed to Github Pages.'}));
 });
 gulp.task('deploy', function () {
-  runSequence(['styles-uncss', 'styles-inline'],
+  runSequence(
+    'clean',
     'jekyllb',
-    'deployGH'
+    ['styles', 'images'],
+    'copy',
+    //['styles-uncss', 'styles-inline'],
+    'deploy-gh-pages'
   );
 });
 
@@ -124,7 +124,7 @@ gulp.task('clean', function () {
 gulp.task('default', function () {
   runSequence(
     'clean',
-    'styles', 'images', 'scripts'
+    'styles', 'images'
   );
 });
 
@@ -138,7 +138,7 @@ gulp.task('watch', function () {
   gulp.watch('images/**/*.{png,gif,jpg}', ['images']);
 
   // Watch .js files
-  gulp.watch('assets/draft-animation.hyperesources/', ['scripts']);
+  // gulp.watch('assets/draft-animation.hyperesources/', ['scripts']);
 
   // Create LiveReload server
   livereload.listen();
