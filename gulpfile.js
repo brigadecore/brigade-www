@@ -22,6 +22,8 @@ var gulp = require('gulp'),
   streamqueue = require('streamqueue'),
   critical = require('critical'),
   inlineCss = require('gulp-inline-css'),
+  shell = require('gulp-shell'),
+  deploy = require('gulp-gh-pages'),
   runSequence = require('run-sequence');
 
 
@@ -97,6 +99,21 @@ gulp.task('scripts', function () {
 });
 
 
+// Deploy
+gulp.task('jekyllb', shell.task(['bundle exec jekyll b']));
+gulp.task('deployGH', function() {
+  return gulp.src('_site/**/*')
+    .pipe(deploy())
+    .pipe(notify({message: 'Site deployed to Github Pages.'}));
+});
+gulp.task('deploy', function () {
+  runSequence(['styles-uncss', 'styles-inline'],
+    'jekyllb',
+    'deployGH'
+  );
+});
+
+
 // Clean
 gulp.task('clean', function () {
   return del('_site/assets/', {force: true});
@@ -107,9 +124,8 @@ gulp.task('clean', function () {
 gulp.task('default', function () {
   runSequence(
     'clean',
-    'styles', 'images', 'scripts',
-    'styles-uncss',
-    'styles-inline');
+    'styles', 'images', 'scripts'
+  );
 });
 
 // Watch task
