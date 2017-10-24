@@ -120,6 +120,10 @@ body {
   color: $mid;
   font-size: 16px;
   overflow-x: hidden;
+  background: -webkit-linear-gradient(110deg, white 20%, #f0f0f0);
+  background: -o-linear-gradient(110deg, white 20%, #f0f0f0);
+  background: -moz-linear-gradient(110deg, white 20%, #f0f0f0);
+  background: linear-gradient(110deg, white 20%, #f0f0f0);
 }
 
 h1, h2, h3 {
@@ -229,6 +233,7 @@ small {
   position: relative;
   z-index: 8;
   border-top: 4px solid $bluem;
+  max-height: 820px;
 
   .titles {
     z-index: 150;
