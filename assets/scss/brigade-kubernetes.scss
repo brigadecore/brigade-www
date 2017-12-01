@@ -1,0 +1,18 @@
+#kubernetes {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  background: -webkit-linear-gradient(110deg, white 20%, #f0f0f0);
+  background: -o-linear-gradient(110deg, white 20%, #f0f0f0);
+  background: -moz-linear-gradient(110deg, white 20%, #f0f0f0);
+  background: linear-gradient(110deg, white 20%, #f0f0f0);
+
+  ul {
+    column-count: 2;
+
+    li {
+      padding: 0 0 0 2.5rem;
+      background: url(../images/asterisk-01.svg) no-repeat 0 0;
+
+    }
+  }
+}
