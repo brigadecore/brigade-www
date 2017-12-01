@@ -1,0 +1,24 @@
+#kashti {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+
+  .columns {
+    position: relative;
+    z-index: 500;
+  }
+
+  &:after {
+    display: block;
+    content: " ";
+    background: $light;
+    width: 70%;
+    position: absolute;
+    left: 15%;
+    top: 4rem;
+    z-index: -10;
+  }
+
+  .button {
+    margin-right: 1rem;
+  }
+}

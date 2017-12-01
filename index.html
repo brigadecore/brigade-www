@@ -21,17 +21,17 @@ keywords: Brigade,Kubernetes,Azure,Kube,Deploy,CI,CD,Pipeline,Scripting,Automati
     <h1>Event-driven scripting for Kubernetes.</h1>
     <h2>Brigade is a tool for running scriptable, automated tasks in the cloud &mdash; as part of your Kubernetes cluster.</h2>
 
-    <a href="https://github.com/azure/brigade" title="Brigade Github" class="button round secondary">Get Brigade</a>
+    <a href="https://github.com/azure/brigade" title="Brigade Github" class="button round primary">Get Brigade</a>
   </div>
 
 </section>
 
-<section id="code" class="brigade-examples">
+<section id="code" class="brigade-examples content">
   <div class="row">
     <div class="small-12 medium-10 medium-offset-1 columns">
       <div class="row">
 
-        <div class="medium-6 columns">
+        <div class="medium-7 columns">
 
           <h2>Simple, powerful pipes</h2>
           <p>Each project gets a <code>brigade.js</code> config file, which is where you can write dynamic, interwoven pipelines and tasks for your Kubernetes cluster. Leave your YAML at home!</p>
@@ -111,7 +111,7 @@ events.on("imagePush", (e, p) => {
 
         </div> <!-- /column -->
 
-        <div class="medium-6 columns">
+        <div class="medium-5 columns">
           <h4>Example use cases:</h4>
           <ul>
             <li class="slide-trigger is-active"><a data-orbit-link="headline-1"  aria-selected="true">Update a Pull Request</a>
@@ -132,79 +132,6 @@ events.on("imagePush", (e, p) => {
 
           <p>Check out more examples in <a href="https://azure.github.io/brigade/" target="_blank">our docs</a>. <i class="icon fa  fa-arrow-right"></i></p>
         </div>
-
-          <!-- <div class="tabs-content" data-tabs-content="code-examples">
-            <div class="tabs-panel is-active" id="panel1">
-<em>// update a pull request</em>
-events.on("imagePush", (e, p) => {
-  var name = "example-hello"
-  var docker = JSON.parse(e.payload)
-  console.log(docker)
-
-  if (docker.action != "push") {
-    console.log(`ignoring action ${docker.action}`)
-    return
-}
-            </div>
-            <div class="tabs-panel" id="panel2">
-<em>// run a cron job</em>
-events.on("imagePush", (e, p) => {
-  var name = "example-hello"
-  var docker = JSON.parse(e.payload)
-  console.log(docker)
-
-  if (docker.action != "push") {
-    console.log(`ignoring action ${docker.action}`)
-    return
-}
-            </div>
-            <div class="tabs-panel" id="panel3">
-<em>// push a docker image</em>
-events.on("imagePush", (e, p) => {
-  var name = "example-hello"
-  var docker = JSON.parse(e.payload)
-  console.log(docker)
-
-  if (docker.action != "push") {
-    console.log(`ignoring action ${docker.action}`)
-    return
-}
-            </div>
-            <div class="tabs-panel" id="panel4">
-<em>// update a trello board</em>
-events.on("imagePush", (e, p) => {
-  var name = "example-hello"
-  var docker = JSON.parse(e.payload)
-  console.log(docker)
-
-  if (docker.action != "push") {
-    console.log(`ignoring action ${docker.action}`)
-    return
-}
-            </div>
-            <div class="tabs-panel" id="panel5">
-<em>// post a message to slack</em>
-events.on("imagePush", (e, p) => {
-  var name = "example-hello"
-  var docker = JSON.parse(e.payload)
-  console.log(docker)
-
-  if (docker.action != "push") {
-    console.log(`ignoring action ${docker.action}`)
-    return
-}
-            </div>
-          </div>
-
-          <nav class="orbit-bullets">
-            <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
-            <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
-            <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
-            <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
-          </nav> -->
-
-
-        
       </div>
 
       <div class="center">
@@ -217,7 +144,7 @@ events.on("imagePush", (e, p) => {
   </div>
 </section>
 
-<section id="kubernetes" class="brigade-cluster">
+<section id="kubernetes" class="brigade-cluster content">
   <div class="row">
     <div class="small-12 medium-10 medium-offset-1 columns">
       <div class="row">
@@ -255,12 +182,12 @@ helm get brigade-server
   </div>
 </section>
 
-<section id="kashti" class="brigade-interface">
+<section id="kashti" class="brigade-interface content">
   <div class="row">
     <div class="small-12 medium-10 medium-offset-1 columns">
       <div class="row">
         <div class="medium-6 columns">
-          IMG
+          <img src="assets/images/kashti-ui.png" alt="Kashti Dashboard" />
         </div>
 
         <div class="medium-6 columns">
