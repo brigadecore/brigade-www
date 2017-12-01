@@ -26,6 +26,262 @@ keywords: Brigade,Kubernetes,Azure,Kube,Deploy,CI,CD,Pipeline,Scripting,Automati
 
 </section>
 
+<section id="code" class="brigade-examples">
+  <div class="row">
+    <div class="small-12 medium-10 medium-offset-1 columns">
+      <div class="row">
+
+        <div class="medium-6 columns">
+
+          <h2>Simple, powerful pipes</h2>
+          <p>Each project gets a <code>brigade.js</code> config file, which is where you can write dynamic, interwoven pipelines and tasks for your Kubernetes cluster. Leave your YAML at home!</p>
+
+          <ul class="example-orbit-content" data-orbit>
+            <li data-orbit-slide="headline-1">
+              <pre>
+<em>// update a pull request</em>
+events.on("imagePush", (e, p) => {
+  var name = "example-hello"
+  var docker = JSON.parse(e.payload)
+  console.log(docker)
+
+  if (docker.action != "push") {
+    console.log(`ignoring action ${docker.action}`)
+    return
+}
+              </pre>
+            </li>
+            <li data-orbit-slide="headline-2">
+              <pre>
+<em>// update a pull request</em>
+events.on("imagePush", (e, p) => {
+  var name = "example-hello"
+  var docker = JSON.parse(e.payload)
+  console.log(docker)
+
+  if (docker.action != "push") {
+    console.log(`ignoring action ${docker.action}`)
+    return
+}
+              </pre>
+            </li>
+            <li data-orbit-slide="headline-3">
+              <pre>
+<em>// update a pull request</em>
+events.on("imagePush", (e, p) => {
+  var name = "example-hello"
+  var docker = JSON.parse(e.payload)
+  console.log(docker)
+
+  if (docker.action != "push") {
+    console.log(`ignoring action ${docker.action}`)
+    return
+}
+              </pre>
+            </li>
+            <li data-orbit-slide="headline-4">
+              <pre>
+<em>// update a pull request</em>
+events.on("imagePush", (e, p) => {
+  var name = "example-hello"
+  var docker = JSON.parse(e.payload)
+  console.log(docker)
+
+  if (docker.action != "push") {
+    console.log(`ignoring action ${docker.action}`)
+    return
+}
+              </pre>
+            </li>
+            <li data-orbit-slide="headline-5">
+              <pre>
+<em>// update a pull request</em>
+events.on("imagePush", (e, p) => {
+  var name = "example-hello"
+  var docker = JSON.parse(e.payload)
+  console.log(docker)
+
+  if (docker.action != "push") {
+    console.log(`ignoring action ${docker.action}`)
+    return
+}
+              </pre>
+            </li>
+          </ul> <!-- /orbit -->
+
+        </div> <!-- /column -->
+
+        <div class="medium-6 columns">
+          <h4>Example use cases:</h4>
+          <ul>
+            <li class="slide-trigger is-active"><a data-orbit-link="headline-1"  aria-selected="true">Update a Pull Request</a>
+            </li>
+            <li class="slide-trigger">
+              <a data-orbit-link="headline-2">Run a Cron Job</a>
+            </li>
+            <li class="slide-trigger">
+              <a data-orbit-link="headline-3">Push a Docker image</a>
+            </li>
+            <li class="slide-trigger">
+              <a data-orbit-link="headline-4">Update a Trello board</a>
+            </li>
+            <li class="slide-trigger">
+              <a data-orbit-link="headline-5">Post a message to Slack</a>
+            </li>
+          </ul>
+
+          <p>Check out more examples in <a href="https://azure.github.io/brigade/" target="_blank">our docs</a>. <i class="icon fa  fa-arrow-right"></i></p>
+        </div>
+
+          <!-- <div class="tabs-content" data-tabs-content="code-examples">
+            <div class="tabs-panel is-active" id="panel1">
+<em>// update a pull request</em>
+events.on("imagePush", (e, p) => {
+  var name = "example-hello"
+  var docker = JSON.parse(e.payload)
+  console.log(docker)
+
+  if (docker.action != "push") {
+    console.log(`ignoring action ${docker.action}`)
+    return
+}
+            </div>
+            <div class="tabs-panel" id="panel2">
+<em>// run a cron job</em>
+events.on("imagePush", (e, p) => {
+  var name = "example-hello"
+  var docker = JSON.parse(e.payload)
+  console.log(docker)
+
+  if (docker.action != "push") {
+    console.log(`ignoring action ${docker.action}`)
+    return
+}
+            </div>
+            <div class="tabs-panel" id="panel3">
+<em>// push a docker image</em>
+events.on("imagePush", (e, p) => {
+  var name = "example-hello"
+  var docker = JSON.parse(e.payload)
+  console.log(docker)
+
+  if (docker.action != "push") {
+    console.log(`ignoring action ${docker.action}`)
+    return
+}
+            </div>
+            <div class="tabs-panel" id="panel4">
+<em>// update a trello board</em>
+events.on("imagePush", (e, p) => {
+  var name = "example-hello"
+  var docker = JSON.parse(e.payload)
+  console.log(docker)
+
+  if (docker.action != "push") {
+    console.log(`ignoring action ${docker.action}`)
+    return
+}
+            </div>
+            <div class="tabs-panel" id="panel5">
+<em>// post a message to slack</em>
+events.on("imagePush", (e, p) => {
+  var name = "example-hello"
+  var docker = JSON.parse(e.payload)
+  console.log(docker)
+
+  if (docker.action != "push") {
+    console.log(`ignoring action ${docker.action}`)
+    return
+}
+            </div>
+          </div>
+
+          <nav class="orbit-bullets">
+            <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+            <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+            <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
+            <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
+          </nav> -->
+
+
+
+      </div>
+
+      <div class="center">
+        <a class="button rounded center primary" href="https://github.com/Azure/brigade" target="_blank">
+          Get Brigade
+        </a><a href="">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="kubernetes" class="brigade-cluster">
+  <div class="row">
+    <div class="small-12 medium-10 medium-offset-1 columns">
+      <div class="row">
+        <div class="medium-6 columns">
+
+          <h2>Runs inside your cluster</h2>
+          <p>By running Brigade as a Kubernetes pod, you can harness a whole host of useful data and event types &mdash; and turn them into powerful pipelines!</p>
+
+          <p>Brigade can be used to watch for (and to initiate):
+          <ul class="fancy">
+            <li>App Deployments</li>
+            <li>App Deployments</li>
+            <li>App Deployments</li>
+            <li>App Deployments</li>
+            <li>App Deployments</li>
+            <li>App Deployments</li>
+          </ul>
+        </div>
+
+        <div class="medium-6 columns">
+          <aside class="cli">
+            <pre>
+<em>// install brigade using helm</em>
+helm repo add brigade https://azure.github.io/brigade
+helm install brigade/brigade -- name brigade-server
+
+<em>// check brigade status</em>
+helm get brigade-server
+            </pre>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="kashti" class="brigade-interface">
+  <div class="row">
+    <div class="small-12 medium-10 medium-offset-1 columns">
+      <div class="row">
+        <div class="medium-6 columns">
+          IMG
+        </div>
+
+        <div class="medium-6 columns">
+          <h2>Kashti Dashboard: a place for your pipelines</h2>
+          <p>Output from Brigade can be sent to Kashti &mdash; a simple UI to display build results and logs.</p>
+
+          <div class="btn-group">
+            <a class="button small rounded primary" href="https://github.com/Azure/kashti" target="_blank">
+              Get Kashti
+            </a>
+
+            <a class="button small rounded secondary" href="https://azure.github.io/kashti" target="_blank">
+              Live Demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="row">
     <div class="small-10 small-offset-1 medium-5 columns">
@@ -63,3 +319,22 @@ keywords: Brigade,Kubernetes,Azure,Kube,Deploy,CI,CD,Pipeline,Scripting,Automati
     </div>
   </div>
 </footer>
+
+<script src="assets/js/vendor.min.js"></script>
+<script src="assets/js/foundation.js"></script>
+<!-- <script src="assets/js/app.min.js"></script> -->
+
+<script>
+  $(document).foundation({
+    orbit: {
+      stack_on_small: false,
+        navigation_arrows: false,
+        slide_number: false,
+        pause_on_hover: false,
+        resume_on_mouseout: false,
+        bullets: true,
+        timer: true,
+        variable_height: false,
+    }
+  });
+</script>
