@@ -1,10 +1,21 @@
 #kashti {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 12rem;
+  padding-bottom: 12rem;
+  min-height: 600px;
+  position: relative;
 
   .columns {
     position: relative;
     z-index: 500;
+  }
+
+  .button {
+    margin-right: 1rem;
+  }
+
+  img.uipipes {
+    position: relative;
+    z-index: 400;
   }
 
   &:after {
@@ -12,13 +23,18 @@
     content: " ";
     background: $light;
     width: 70%;
+    min-height: 250px;
     position: absolute;
     left: 15%;
-    top: 4rem;
-    z-index: -10;
+    top: 10.2rem;
+    z-index: 10;
   }
 
-  .button {
-    margin-right: 1rem;
+  img.uipipes {
+    position: absolute;
+    position: relative;
+    min-width: 100%;
+    top: -200px;
+    z-index: 20;
   }
 }

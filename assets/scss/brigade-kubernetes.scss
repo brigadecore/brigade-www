@@ -1,18 +1,53 @@
 #kubernetes {
   padding-top: 7rem;
-  padding-bottom: 7rem;
-  background: -webkit-linear-gradient(110deg, white 20%, #f0f0f0);
-  background: -o-linear-gradient(110deg, white 20%, #f0f0f0);
-  background: -moz-linear-gradient(110deg, white 20%, #f0f0f0);
-  background: linear-gradient(110deg, white 20%, #f0f0f0);
+  padding-bottom: 12rem;
+  min-height: 600px;
+  background:
+    url('../images/pipes-pattern-02.svg') no-repeat left 52px,
+    url('../images/pipes-pattern-03.svg') no-repeat 85% 115px,
+    linear-gradient(110deg, white 20%, #f0f0f0);
+  background-size:
+    8%,
+    48%,
+    auto;
 
   ul {
     column-count: 2;
 
     li {
-      padding: 0 0 0 2.5rem;
-      background: url(../images/asterisk-01.svg) no-repeat 0 0;
+      padding: 0 0 0 2rem;
+      background: url(../images/asterisk-01.svg) no-repeat 0 4px;
 
+      &:nth-child(even) {
+        background: url(../images/asterisk-01.svg) no-repeat 0 4px;
+      }
+
+      &:nth-child(odd) {
+        background: url(../images/asterisk-02.svg) no-repeat 0 4px;
+      }
+    }
+  }
+
+  p {
+    padding-right: 10%;
+  }
+
+  .cli {
+    padding: 0.1em;
+    margin-top: 70px;
+
+    pre {
+      background: url('../images/cli.svg') no-repeat 0 0;
+      background-size: 98%;
+      min-height: 270px;
+      padding: 50px 1.5rem;
+      font-size: 14px;
+      color: darken($yellow, 27.5%);
+
+      em {
+        font-style: normal;
+        color: $mid;
+      }
     }
   }
 }
