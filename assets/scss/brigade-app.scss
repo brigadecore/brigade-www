@@ -35,7 +35,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: $klinic;
+  font-family: $work;
 }
 
 p,
@@ -145,16 +145,23 @@ small {
 
   h2 {
     color: $bluem;
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+    font-family: $work;
   }
 
   h4 {
     color: $mid;
+    font-family: $work;
+    font-size: 1rem;
   }
 
   p,
   li {
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.7;
+    padding-right: 5%;
+    color: darken($mid, 10%);
   }
 
   .center {
@@ -169,7 +176,7 @@ small {
 
   code,
   pre {
-    background: darken($light, 12.5%);
+    background: darken($light, 2.5%);
     color: $mid;
     border: none;
     outline: none;
