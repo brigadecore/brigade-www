@@ -4,11 +4,11 @@
   min-height: 600px;
   background:
     url('../images/pipes-pattern-02.svg') no-repeat left 52px,
-    url('../images/pipes-pattern-03.svg') no-repeat 85% 115px,
+    url('../images/pipes-pattern-03.svg') no-repeat 60% 115px,
     linear-gradient(110deg, white 20%, #f0f0f0);
   background-size:
-    8%,
-    48%,
+    126px,
+    698px,
     auto;
 
   ul {
@@ -35,6 +35,8 @@
   .cli {
     padding: 0.1em;
     margin-top: 70px;
+    position: absolute;
+    right: -5%;
 
     pre {
       background: url('../images/cli.svg') no-repeat 0 0;
