@@ -1,8 +1,14 @@
 #kashti {
-  padding-top: 12rem;
-  padding-bottom: 12rem;
-  min-height: 600px;
+  padding-top: 14rem;
+  padding-bottom: 15rem;
+  min-height: 800px;
   position: relative;
+  background: url('../images/pipes-pattern-04.png') no-repeat center -104px;
+  background-size: 2140px;
+
+  .row {
+    overflow: visible;
+  }
 
   .columns {
     position: relative;
@@ -11,6 +17,11 @@
 
   .button {
     margin-right: 1rem;
+  }
+
+  .uipic {
+    margin-top: -30px;
+    margin-left: 22px;
   }
 
   img.uipipes {
@@ -23,20 +34,21 @@
     content: " ";
     background: $light;
     width: 80%;
-    min-height: 250px;
+    min-height: 235px;
     position: absolute;
     left: 10%;
-    top: 10.2rem;
+    top: 13rem;
     z-index: 100;
   }
 
   img.uipipes {
     position: absolute;
-    min-width: 900px;
-    width: 900px;
+    min-width: auto;
+    width: 2140px;
+    max-width: 2140px;
     left: 50%;
-    margin-left: -450px;
-    top: -200px;
+    margin-left: -1070px;
+    top: 0;
     z-index: -2;
   }
 }

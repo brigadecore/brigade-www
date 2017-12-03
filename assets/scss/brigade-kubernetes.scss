@@ -3,16 +3,20 @@
   padding-bottom: 12rem;
   min-height: 600px;
   background:
-    url('../images/pipes-pattern-02.svg') no-repeat left 52px,
-    url('../images/pipes-pattern-03.svg') no-repeat 60% 115px,
+    // url('../images/pipes-pattern-02.svg') no-repeat left 52px,
+    url('../images/pipes-pattern-03.png') no-repeat center -162px,
     linear-gradient(110deg, white 20%, #f0f0f0);
   background-size:
-    126px,
-    698px,
+    // 126px,
+    2130px,
     auto;
 
+  h2, p {
+    margin-left: 1.5rem;
+  }
+
   ul {
-    column-count: 2;
+    // column-count: 2;
 
     li {
       padding: 0 0 0 2rem;
@@ -34,15 +38,15 @@
 
   .cli {
     padding: 0.1em;
-    margin-top: 70px;
+    margin-top: 45px;
     position: absolute;
-    right: -5%;
+    right: -2.5%;
 
     pre {
       background: url('../images/cli.svg') no-repeat 0 0;
       background-size: 98%;
-      min-height: 270px;
-      padding: 50px 1.5rem;
+      min-height: 210px;
+      padding: 45px 1.5rem 0;
       font-size: 14px;
       color: darken($yellow, 27.5%);
 
