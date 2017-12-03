@@ -146,7 +146,7 @@ events.on("imagePush", (e, p) => {
 
 <section id="kubernetes" class="brigade-cluster content">
   <div class="row">
-    <div class="small-12 medium-12 columns">
+    <div class="small-12 medium-11 medium-offset-1 columns">
       <div class="row">
         <div class="medium-6 columns">
 
@@ -155,12 +155,9 @@ events.on("imagePush", (e, p) => {
 
           <p>Brigade can be used to watch for (and to initiate):
           <ul class="fancy">
+            <li>Kubernetes API events</li>
             <li>App Deployments</li>
-            <li>App Deployments</li>
-            <li>App Deployments</li>
-            <li>App Deployments</li>
-            <li>App Deployments</li>
-            <li>App Deployments</li>
+            <li>Helm Releases</li>
           </ul>
         </div>
 
@@ -209,7 +206,6 @@ helm get brigade-server
     </div>
   </div>
 
-  <img src="assets/images/pipes-pattern-04.svg" alt="pipes" class="uipipes" />
 </section>
 
 <footer>
@@ -252,20 +248,4 @@ helm get brigade-server
 
 <script src="assets/js/vendor.min.js"></script>
 <script src="assets/js/foundation.js"></script>
-<!-- <script src="assets/js/app.min.js"></script> -->
-
-<script>
-  $(document).foundation({
-    orbit: {
-      stack_on_small: false,
-      navigation_arrows: false,
-      slide_number: false,
-      pause_on_hover: true,
-      resume_on_mouseout: false,
-      bullets: true,
-      timer: true,
-      variable_height: false,
-    }
-  });
-</script>
-
+<script src="assets/js/app.min.js"></script>
