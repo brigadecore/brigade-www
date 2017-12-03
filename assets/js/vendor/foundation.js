@@ -1240,6 +1240,7 @@
         $instance.attr('aria-multiselectable','true');
       }
     },
+<<<<<<< HEAD
 
 	toggle : function(options) {
 		var options = typeof options !== 'undefined' ? options : {};
@@ -1277,6 +1278,45 @@
 		options.toggle_state = 'close';
 		this.toggle(options);
 	},
+=======
+	
+  	toggle : function(options) {
+  		var options = typeof options !== 'undefined' ? options : {};
+  		var selector = typeof options.selector !== 'undefined' ? options.selector : '';
+  		var toggle_state = typeof options.toggle_state !== 'undefined' ? options.toggle_state : '';
+  		var $accordion = typeof options.$accordion !== 'undefined' ? options.$accordion : this.S(this.scope).closest('[' + this.attr_name() + ']');
+  
+  		var $items = $accordion.find('> dd' + selector + ', > li' + selector);
+  		if ( $items.length < 1 ) {
+  			if ( window.console ) {
+  				console.error('Selection not found.', selector);
+  			}
+  			return false;
+  		}
+  
+  		var S = this.S;
+  		var active_class = this.settings.active_class;
+  		$items.each(function() {
+  			var $item = S(this);
+  			var is_active = $item.hasClass(active_class);
+  			if ( ( is_active && toggle_state === 'close' ) || ( !is_active && toggle_state === 'open' ) || toggle_state === '' ) {
+  				$item.find('> a').trigger('click.fndtn.accordion');
+  			}
+  		});
+  	},
+  
+  	open : function(options) {
+  		var options = typeof options !== 'undefined' ? options : {};
+  		options.toggle_state = 'open';
+  		this.toggle(options);
+  	},
+  
+  	close : function(options) {
+  		var options = typeof options !== 'undefined' ? options : {};
+  		options.toggle_state = 'close';
+  		this.toggle(options);
+  	},	
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
 
     off : function () {},
 
@@ -1783,8 +1823,13 @@
       var caption = $image.attr('data-caption');
 
       if (caption) {
+<<<<<<< HEAD
 	var containerPlain = container.get(0);
 	containerPlain.innerHTML = caption;
+=======
+      	var containerPlain = container.get(0);
+      	containerPlain.innerHTML = caption;
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
         container.show();
       } else {
         container
@@ -2193,7 +2238,11 @@
         //get the actual width of the page and store it
         var actualBodyWidth;
         var windowWidth = window.innerWidth;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
         if (document.getElementsByClassName('row')[0]) {
           actualBodyWidth = document.getElementsByClassName('row')[0].clientWidth;
         } else {
@@ -2206,7 +2255,11 @@
         if (!this.hasClass('mega') && !s.ignore_repositioning) {
           var outerWidth = this.outerWidth();
           var o_left = t.offset().left;
+<<<<<<< HEAD
 
+=======
+		  
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
           //miss top
           if (t.offset().top <= this.outerHeight()) {
             p.missTop = true;
@@ -2425,7 +2478,11 @@
       else {
         vals = group ? equalizer.find('['+this.attr_name()+'-watch="'+group+'"]:visible') : equalizer.find('['+this.attr_name()+'-watch]:visible');
       }
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
       if (vals.length === 0) {
         return;
       }
@@ -3680,9 +3737,15 @@
 
     corners : function (el) {
       if (el.length === 0) {
+<<<<<<< HEAD
          return [false, false, false, false];
       }
 
+=======
+         return [false, false, false, false];   
+      }
+      
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
       var w = $(window),
           window_half = w.height() / 2,
           //using this to calculate since scroll may not have finished yet.
@@ -5546,12 +5609,21 @@
       var self = this,
           S = this.S;
 
+<<<<<<< HEAD
 	  // Store the default active tabs which will be referenced when the
 	  // location hash is absent, as in the case of navigating the tabs and
 	  // returning to the first viewing via the browser Back button.
 	  S('[' + this.attr_name() + '] > .active > a', this.scope).each(function () {
 	    self.default_tab_hashes.push(this.hash);
 	  });
+=======
+  	  // Store the default active tabs which will be referenced when the
+  	  // location hash is absent, as in the case of navigating the tabs and
+  	  // returning to the first viewing via the browser Back button.
+  	  S('[' + this.attr_name() + '] > .active > a', this.scope).each(function () {
+  	    self.default_tab_hashes.push(this.hash);
+  	  });
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
 
       this.bindings(method, options);
       this.handle_location_hash_change();
@@ -5566,12 +5638,20 @@
         if (!settings.is_hover || Modernizr.touch) {
           // if user did not pressed tab key, prevent default action
           var keyCode = e.keyCode || e.which;
+<<<<<<< HEAD
           if (keyCode !== 9) {
+=======
+          if (keyCode !== 9) { 
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
             e.preventDefault();
             e.stopPropagation();
           }
           self.toggle_active_tab(S(target).parent());
+<<<<<<< HEAD
 
+=======
+          
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
         }
       };
 
@@ -5584,7 +5664,11 @@
           if (keyCode === 13 || keyCode === 32) { // enter or space
             var el = this;
             usual_tab_behavior(e, el);
+<<<<<<< HEAD
           }
+=======
+          } 
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
         })
         // Click event: tab title
         .on('click.fndtn.tab', '[' + this.attr_name() + '] > * > a', function(e) {
@@ -5873,7 +5957,11 @@
           if (/mouse/i.test(e.type) && self.ie_touch(e)) {
             return false;
           }
+<<<<<<< HEAD
 
+=======
+          
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
           if ($this.hasClass('open')) {
             if (Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type)) {
               e.preventDefault();
@@ -6007,7 +6095,11 @@
           'right' : (right) ? right : 'auto'
         }).end();
       };
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
       var o_top = target.offset().top;
       var o_left = target.offset().left;
       var outerHeight = target.outerHeight();
@@ -6019,7 +6111,11 @@
         tip.addClass('tip-override');
         objPos(nub, -nubHeight, 'auto', 'auto', o_left);
       } else {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
         if (Foundation.rtl) {
           nub.addClass('rtl');
           o_left = o_left + target.outerWidth() - tip.outerWidth();
@@ -6030,11 +6126,19 @@
         if (nub.attr('style')) {
           nub.removeAttr('style');
         }
+<<<<<<< HEAD
 
         tip.removeClass('tip-override');
 
         var tip_outerHeight = tip.outerHeight();
 
+=======
+        
+        tip.removeClass('tip-override');
+        
+        var tip_outerHeight = tip.outerHeight();
+        
+>>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
         if (classes && classes.indexOf('tip-top') > -1) {
           if (Foundation.rtl) {
             nub.addClass('rtl');

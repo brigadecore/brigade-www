@@ -99,7 +99,7 @@
           if (/mouse/i.test(e.type) && self.ie_touch(e)) {
             return false;
           }
-
+          
           if ($this.hasClass('open')) {
             if (Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type)) {
               e.preventDefault();
@@ -233,7 +233,7 @@
           'right' : (right) ? right : 'auto'
         }).end();
       };
-
+      
       var o_top = target.offset().top;
       var o_left = target.offset().left;
       var outerHeight = target.outerHeight();
@@ -245,7 +245,7 @@
         tip.addClass('tip-override');
         objPos(nub, -nubHeight, 'auto', 'auto', o_left);
       } else {
-
+        
         if (Foundation.rtl) {
           nub.addClass('rtl');
           o_left = o_left + target.outerWidth() - tip.outerWidth();
@@ -256,11 +256,11 @@
         if (nub.attr('style')) {
           nub.removeAttr('style');
         }
-
+        
         tip.removeClass('tip-override');
-
+        
         var tip_outerHeight = tip.outerHeight();
-
+        
         if (classes && classes.indexOf('tip-top') > -1) {
           if (Foundation.rtl) {
             nub.addClass('rtl');

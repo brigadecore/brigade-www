@@ -828,9 +828,9 @@
 
     corners : function (el) {
       if (el.length === 0) {
-         return [false, false, false, false];
+         return [false, false, false, false];   
       }
-
+      
       var w = $(window),
           window_half = w.height() / 2,
           //using this to calculate since scroll may not have finished yet.
