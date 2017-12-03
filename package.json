@@ -33,6 +33,7 @@
     "motion-ui": "^1.2.3",
     "normalize-sass": "^1.0.0",
     "normalize.scss": "^0.1.0",
+    "penthouse": "^1.1.4",
     "run-sequence": "^2.1.0",
     "streamqueue": "^1.1.1",
     "uglify": "^0.1.5"

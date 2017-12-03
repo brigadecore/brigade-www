@@ -59,7 +59,7 @@ gulp.task('styles-inline', function (cb) {
   critical.generate({
     base: '_site/',
     src: 'index.html',
-    css: ['assets/css/app.min.css'],
+    css: ['assets/css/brigade-app.min.css'],
     dimensions: [{
       width: 320,
       height: 480
