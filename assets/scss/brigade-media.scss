@@ -42,7 +42,7 @@
 
   #topbar {
     height: 150px;
-    overflow: hidden;
+    overflow: visible;
     position: absolute;
     top: 0;
     background-color: transparent;
@@ -54,14 +54,14 @@
     h1.logo {
       position: absolute;
       left: 50%;
-      max-width: 120px;
-      margin-left: -60px;
+      max-width: 120px !important;
+      margin-left: -60px !important;
     }
 
     ul {
       float: none !important;
-      text-align: center;
-      margin: 5.75em auto 0;
+      text-align: center !important;
+      margin: 5.75em auto 0 !important;
 
       li {
         float: none !important;
@@ -83,6 +83,10 @@
     &:hover {
       background-color: transparent;
     }
+  }
+
+  .content {
+    padding-left: 1rem;
   }
 
   #hero {
@@ -125,6 +129,55 @@
     #draftanimation_hype_container {
       display: none !important;
     }
+  }
+
+  #code {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+
+    .example-orbit-content {
+      ul li {
+        display: none;
+
+        &:first-child {
+          display: block;
+        }
+      }
+    }
+
+    h4 {
+      margin-top: 40px;
+    }
+  }
+
+  #kubernetes {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+    background:
+      linear-gradient(110deg, white 20%, #f0f0f0);
+    background-size:
+      auto;
+
+      .cli {
+        width: 90%;
+        right: 5%;
+        margin-top: 0;
+
+        pre {
+          font-size: 10px;
+        }
+      }
+  }
+
+  #kashti {
+    padding-bottom: 5rem;
+
+    .uipic {
+      margin-top: 20px;
+      margin-bottom: 60px;
+      max-width: 95%;
+    }
+
   }
 
   #info,
