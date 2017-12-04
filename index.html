@@ -168,13 +168,13 @@ events.on("exec", (e, p) => {
         <div class="medium-6 columns">
 
           <h2>Runs inside your cluster</h2>
-          <p>By running Brigade as a Kubernetes pod, you can harness a whole host of useful data and event types &mdash; and turn them into powerful pipelines!</p>
+          <p>By running Brigade as a service inside your <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> cluster, you can harness the power of millions of available Docker images.</p>
 
-          <p>Brigade can be used to watch for (and to initiate):
+          <p>Brigade can be used to chain containers together to build processing pipelines.</p>
           <ul class="fancy">
-            <li>Kubernetes API events</li>
-            <li>App Deployments</li>
-            <li>Helm Releases</li>
+            <li>Watch for incoming requests from services like GitHub, Docker, and Trello</li>
+            <li>Run unit tests, process data, and store results</li>
+            <li>Send notifications through services like Slack and Twitter</li>
           </ul>
         </div>
 

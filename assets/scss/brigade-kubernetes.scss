@@ -19,7 +19,7 @@
     // column-count: 2;
 
     li {
-      padding: 0 0 0 2rem;
+      padding: 0 25% 0.5rem 2rem;
       background: url(../images/asterisk-01.svg) no-repeat 0 4px;
 
       &:nth-child(even) {
@@ -38,7 +38,7 @@
 
   .cli {
     padding: 0.1em;
-    margin-top: 45px;
+    margin-top: 54px;
     position: absolute;
     right: -2.5%;
 
