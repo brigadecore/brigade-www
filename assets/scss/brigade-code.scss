@@ -11,7 +11,10 @@
     margin: 1em 0;
     letter-spacing: -0.02em;
     color: $mid;
-    min-height: 300px;
+    min-height: 350px;
+    max-height: 360px;
+    overflow-y: scroll;
+    line-height: 1.4;
 
     em {
       opacity: 0.7;
@@ -39,7 +42,7 @@
   }
 
   h4 {
-    margin: 172px 0 0;
+    margin: 182px 0 1rem;
   }
 
   ul {
@@ -47,12 +50,12 @@
 
     li.slide-trigger {
       padding: 0;
-      margin: 4px 0;
+      margin: 5px 0;
 
       a {
-        padding: 0.25rem 1rem 0.25rem 3.2rem;
+        padding: 0.3rem 1rem 0.3rem 3.2rem;
         background-color: $light;
-        line-height: 2;
+        line-height: 2.2;
         display: block;
         border-radius: 3px;
         color: $mid;

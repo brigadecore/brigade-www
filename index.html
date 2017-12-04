@@ -39,74 +39,94 @@ keywords: Brigade,Kubernetes,Azure,Kube,Deploy,CI,CD,Pipeline,Scripting,Automati
           <ul class="example-orbit-content" data-orbit>
             <li data-orbit-slide="headline-1">
               <pre>
-<em>// update a pull request</em>
-events.on("imagePush", (e, p) => {
-  var name = "example-hello"
-  var docker = JSON.parse(e.payload)
-  console.log(docker)
+<em>// Run unit tests for a Github push</em>
+const { events, Job , Group} = require("brigadier");
+const dest = "$GOPATH/src/github.com/technosophos/ulid";
 
-  if (docker.action != "push") {
-    console.log(`ignoring action ${docker.action}`)
-    return
-}
+events.on("push", (e, p) => {
+  console.log(e.payload)
+  var gh = JSON.parse(e.payload)
+  var test = new Job("test", "golang:1.9")
+  test.tasks = [
+    "mkdir -p " + dest,
+    "cp -a /src/* " + dest,
+    "cd " + dest,
+    "go get -u github.com/golang/dep/cmd/dep",
+    "dep ensure",
+    "make test"
+  ];
+  test.run()
+});
               </pre>
             </li>
             <li data-orbit-slide="headline-2">
               <pre>
-<em>// update a pull request</em>
-events.on("imagePush", (e, p) => {
-  var name = "example-hello"
-  var docker = JSON.parse(e.payload)
-  console.log(docker)
+<em>// Updating a cosmosDB database</em>
+const { events, Job } = require("brigadier")
 
-  if (docker.action != "push") {
-    console.log(`ignoring action ${docker.action}`)
-    return
+events.on("exec", (e, p) => {
+  var mongo = new Job("update-db", "mongo:3.2")
+  mongo.storage.enabled = false
+  mongo.tasks = [
+      dbCmd(p, `db.mydb.insert(${e.payload})`)
+  ]
+  mongo.run()
+})
+
+function dbCmd(p, script) {
+  return `mongo ${p.secrets.cosmosName}.documents.azure.com:10255/test ` +
+    `-u ${p.secrets.cosmosName} -p  ${p.secrets.cosmosKey} --ssl --sslAllowInvalidCertificates ` +
+    `--eval '${script}'`
 }
               </pre>
             </li>
             <li data-orbit-slide="headline-3">
               <pre>
-<em>// update a pull request</em>
-events.on("imagePush", (e, p) => {
-  var name = "example-hello"
-  var docker = JSON.parse(e.payload)
-  console.log(docker)
+<em>// Sending a Slack message</em>
+const { events, Job } = require("brigadier")
 
-  if (docker.action != "push") {
-    console.log(`ignoring action ${docker.action}`)
-    return
+events.on("exec", (e, p) => {
+  var slack = new Job("slack-notify", "technosophos/slack-notify:latest", ["/slack-notify"])
+  slack.env = {
+    SLACK_WEBHOOK: p.secrets.SLACK_WEBHOOK,
+    SLACK_USERNAME: "Brigade",
+    SLACK_TITLE: "Hello from Brigade",
+    SLACK_MESSAGE: "This is a message from Brigade"
+ }
+  slack.run()
 }
               </pre>
             </li>
             <li data-orbit-slide="headline-4">
               <pre>
-<em>// update a pull request</em>
-events.on("imagePush", (e, p) => {
-  var name = "example-hello"
-  var docker = JSON.parse(e.payload)
-  console.log(docker)
+<em>// Sending a Twitter DM</em>
+const { events, Job } = require("brigadier")
 
-  if (docker.action != "push") {
-    console.log(`ignoring action ${docker.action}
-    return
-}
-              </pre>
-            </li>
-            <li data-orbit-slide="headline-5">
-              <pre>
-<em>// update a pull request</em>
-events.on("imagePush", (e, p) => {
-  var name = "example-hello"
-  var docker = JSON.parse(e.payload)
-  console.log(docker)
+const sendTo = "technosophos"
 
-  if (docker.action != "push") {
-    console.log(`ignoring action ${docker.action}
-    return
-}
+events.on("exec", (e, p) => {
+  // Create a new job
+  const twitter = new Job("tweet", "technosophos/twitter-t:latest")
+  twitter.storage.enabled = false
+
+  // Set up the environment variables, copying them from the project.
+  twitter.env = {
+    OWNER: p.secrets.OWNER,
+    CONSUMER_KEY: p.secrets.CONSUMER_KEY,
+    CONSUMER_SECRET: p.secrets.CONSUMER_SECRET,
+    ACCESS_TOKEN: p.secrets.ACCESS_TOKEN,
+    ACCESS_SECRET: p.secrets.ACCESS_SECRET
+  }
+
+  // Set up the env and send a DM
+  twitter.tasks = [
+    "env2creds",
+    `t dm ${sendTo} "${p.name} got event ${e.type}"`
+  ]
+
+  twitter.run()
+})
               </pre>
-            </li>
           </ul> <!-- /orbit -->
 
         </div> <!-- /column -->
@@ -114,23 +134,20 @@ events.on("imagePush", (e, p) => {
         <div class="medium-5 hidden-for-small-only columns">
           <h4>Example use cases:</h4>
           <ul>
-            <li class="slide-trigger"><a data-orbit-link="headline-1" aria-selected="true"><img src="assets/images/ex-icon-01.png" /> Update a Pull Request</a>
+            <li class="slide-trigger"><a data-orbit-link="headline-1" aria-selected="true"><img src="assets/images/ex-icon-01.png" /> Unit tests for a Github push</a>
             </li>
             <li class="slide-trigger">
-              <a data-orbit-link="headline-2"><img src="assets/images/ex-icon-02.png" /> Run a Cron Job</a>
+              <a data-orbit-link="headline-2"><img src="assets/images/ex-icon-07.png" /> Updating a cosmosDB database</a>
             </li>
             <li class="slide-trigger">
-              <a data-orbit-link="headline-3"><img src="assets/images/ex-icon-03.png" /> Push a Docker image</a>
+              <a data-orbit-link="headline-3"><img src="assets/images/ex-icon-05.png" /> Sending a Slack message</a>
             </li>
             <li class="slide-trigger">
-              <a data-orbit-link="headline-4"><img src="assets/images/ex-icon-04.png" /> Update a Trello board</a>
-            </li>
-            <li class="slide-trigger">
-              <a data-orbit-link="headline-5"><img src="assets/images/ex-icon-05.png" /> Post a message to Slack</a>
+              <a data-orbit-link="headline-4"><img src="assets/images/ex-icon-06.png" /> Sending a Twitter DM</a>
             </li>
           </ul>
 
-          <p>Check out more examples in <a href="https://azure.github.io/brigade/" target="_blank">our docs</a>. <img src="assets/images/arrow.png" class="arrow" /></p>
+          <p>Check out <a href="https://azure.github.io/brigade/" target="_blank">our docs</a> for more. <img src="assets/images/arrow.png" class="arrow" /></p>
         </div>
       </div>
 
