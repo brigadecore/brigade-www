@@ -1242,80 +1242,80 @@
     },
 <<<<<<< HEAD
 
-	toggle : function(options) {
-		var options = typeof options !== 'undefined' ? options : {};
-		var selector = typeof options.selector !== 'undefined' ? options.selector : '';
-		var toggle_state = typeof options.toggle_state !== 'undefined' ? options.toggle_state : '';
-		var $accordion = typeof options.$accordion !== 'undefined' ? options.$accordion : this.S(this.scope).closest('[' + this.attr_name() + ']');
+  toggle : function(options) {
+    var options = typeof options !== 'undefined' ? options : {};
+    var selector = typeof options.selector !== 'undefined' ? options.selector : '';
+    var toggle_state = typeof options.toggle_state !== 'undefined' ? options.toggle_state : '';
+    var $accordion = typeof options.$accordion !== 'undefined' ? options.$accordion : this.S(this.scope).closest('[' + this.attr_name() + ']');
 
-		var $items = $accordion.find('> dd' + selector + ', > li' + selector);
-		if ( $items.length < 1 ) {
-			if ( window.console ) {
-				console.error('Selection not found.', selector);
-			}
-			return false;
-		}
+    var $items = $accordion.find('> dd' + selector + ', > li' + selector);
+    if ( $items.length < 1 ) {
+      if ( window.console ) {
+        console.error('Selection not found.', selector);
+      }
+      return false;
+    }
 
-		var S = this.S;
-		var active_class = this.settings.active_class;
-		$items.each(function() {
-			var $item = S(this);
-			var is_active = $item.hasClass(active_class);
-			if ( ( is_active && toggle_state === 'close' ) || ( !is_active && toggle_state === 'open' ) || toggle_state === '' ) {
-				$item.find('> a').trigger('click.fndtn.accordion');
-			}
-		});
-	},
+    var S = this.S;
+    var active_class = this.settings.active_class;
+    $items.each(function() {
+      var $item = S(this);
+      var is_active = $item.hasClass(active_class);
+      if ( ( is_active && toggle_state === 'close' ) || ( !is_active && toggle_state === 'open' ) || toggle_state === '' ) {
+        $item.find('> a').trigger('click.fndtn.accordion');
+      }
+    });
+  },
 
-	open : function(options) {
-		var options = typeof options !== 'undefined' ? options : {};
-		options.toggle_state = 'open';
-		this.toggle(options);
-	},
+  open : function(options) {
+    var options = typeof options !== 'undefined' ? options : {};
+    options.toggle_state = 'open';
+    this.toggle(options);
+  },
 
-	close : function(options) {
-		var options = typeof options !== 'undefined' ? options : {};
-		options.toggle_state = 'close';
-		this.toggle(options);
-	},
+  close : function(options) {
+    var options = typeof options !== 'undefined' ? options : {};
+    options.toggle_state = 'close';
+    this.toggle(options);
+  },
 =======
-	
-  	toggle : function(options) {
-  		var options = typeof options !== 'undefined' ? options : {};
-  		var selector = typeof options.selector !== 'undefined' ? options.selector : '';
-  		var toggle_state = typeof options.toggle_state !== 'undefined' ? options.toggle_state : '';
-  		var $accordion = typeof options.$accordion !== 'undefined' ? options.$accordion : this.S(this.scope).closest('[' + this.attr_name() + ']');
   
-  		var $items = $accordion.find('> dd' + selector + ', > li' + selector);
-  		if ( $items.length < 1 ) {
-  			if ( window.console ) {
-  				console.error('Selection not found.', selector);
-  			}
-  			return false;
-  		}
+    toggle : function(options) {
+      var options = typeof options !== 'undefined' ? options : {};
+      var selector = typeof options.selector !== 'undefined' ? options.selector : '';
+      var toggle_state = typeof options.toggle_state !== 'undefined' ? options.toggle_state : '';
+      var $accordion = typeof options.$accordion !== 'undefined' ? options.$accordion : this.S(this.scope).closest('[' + this.attr_name() + ']');
   
-  		var S = this.S;
-  		var active_class = this.settings.active_class;
-  		$items.each(function() {
-  			var $item = S(this);
-  			var is_active = $item.hasClass(active_class);
-  			if ( ( is_active && toggle_state === 'close' ) || ( !is_active && toggle_state === 'open' ) || toggle_state === '' ) {
-  				$item.find('> a').trigger('click.fndtn.accordion');
-  			}
-  		});
-  	},
+      var $items = $accordion.find('> dd' + selector + ', > li' + selector);
+      if ( $items.length < 1 ) {
+        if ( window.console ) {
+          console.error('Selection not found.', selector);
+        }
+        return false;
+      }
   
-  	open : function(options) {
-  		var options = typeof options !== 'undefined' ? options : {};
-  		options.toggle_state = 'open';
-  		this.toggle(options);
-  	},
+      var S = this.S;
+      var active_class = this.settings.active_class;
+      $items.each(function() {
+        var $item = S(this);
+        var is_active = $item.hasClass(active_class);
+        if ( ( is_active && toggle_state === 'close' ) || ( !is_active && toggle_state === 'open' ) || toggle_state === '' ) {
+          $item.find('> a').trigger('click.fndtn.accordion');
+        }
+      });
+    },
   
-  	close : function(options) {
-  		var options = typeof options !== 'undefined' ? options : {};
-  		options.toggle_state = 'close';
-  		this.toggle(options);
-  	},	
+    open : function(options) {
+      var options = typeof options !== 'undefined' ? options : {};
+      options.toggle_state = 'open';
+      this.toggle(options);
+    },
+  
+    close : function(options) {
+      var options = typeof options !== 'undefined' ? options : {};
+      options.toggle_state = 'close';
+      this.toggle(options);
+    },  
 >>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
 
     off : function () {},
@@ -1824,11 +1824,11 @@
 
       if (caption) {
 <<<<<<< HEAD
-	var containerPlain = container.get(0);
-	containerPlain.innerHTML = caption;
+  var containerPlain = container.get(0);
+  containerPlain.innerHTML = caption;
 =======
-      	var containerPlain = container.get(0);
-      	containerPlain.innerHTML = caption;
+        var containerPlain = container.get(0);
+        containerPlain.innerHTML = caption;
 >>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
         container.show();
       } else {
@@ -2258,7 +2258,7 @@
 <<<<<<< HEAD
 
 =======
-		  
+      
 >>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
           //miss top
           if (t.offset().top <= this.outerHeight()) {
@@ -5610,19 +5610,19 @@
           S = this.S;
 
 <<<<<<< HEAD
-	  // Store the default active tabs which will be referenced when the
-	  // location hash is absent, as in the case of navigating the tabs and
-	  // returning to the first viewing via the browser Back button.
-	  S('[' + this.attr_name() + '] > .active > a', this.scope).each(function () {
-	    self.default_tab_hashes.push(this.hash);
-	  });
+    // Store the default active tabs which will be referenced when the
+    // location hash is absent, as in the case of navigating the tabs and
+    // returning to the first viewing via the browser Back button.
+    S('[' + this.attr_name() + '] > .active > a', this.scope).each(function () {
+      self.default_tab_hashes.push(this.hash);
+    });
 =======
-  	  // Store the default active tabs which will be referenced when the
-  	  // location hash is absent, as in the case of navigating the tabs and
-  	  // returning to the first viewing via the browser Back button.
-  	  S('[' + this.attr_name() + '] > .active > a', this.scope).each(function () {
-  	    self.default_tab_hashes.push(this.hash);
-  	  });
+      // Store the default active tabs which will be referenced when the
+      // location hash is absent, as in the case of navigating the tabs and
+      // returning to the first viewing via the browser Back button.
+      S('[' + this.attr_name() + '] > .active > a', this.scope).each(function () {
+        self.default_tab_hashes.push(this.hash);
+      });
 >>>>>>> 770da29981e8d9e00cabb90e6a0eceee41cb24f8
 
       this.bindings(method, options);
