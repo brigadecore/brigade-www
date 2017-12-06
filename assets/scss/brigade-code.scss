@@ -1,0 +1,100 @@
+#code {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background: url('../images/pipes-pattern-01.svg') no-repeat right top;
+  background-size: 35%;
+
+  pre {
+    font-size: 0.85rem;
+    padding: 1rem 1rem 0;
+    border-radius: 1rem;
+    margin: 1em 0;
+    letter-spacing: -0.02em;
+    color: $mid;
+    min-height: 350px;
+    max-height: 360px;
+    overflow-y: scroll;
+    line-height: 1.4;
+
+    em {
+      opacity: 0.7;
+      font-style: normal;
+    }
+  }
+
+  .orbit-timer {
+    display: none;
+  }
+
+  .orbit-bullets li {
+    width: 11px;
+    height: 11px;
+    border: none;
+    margin: 0 6px 0 0;
+    background: darken($light, 10%);
+    padding: 0;
+    border-radius: 50%;
+    @include transition;
+
+    &.active {
+      background-color: $bluem;
+    }
+  }
+
+  h4 {
+    margin: 182px 0 1rem;
+  }
+
+  ul {
+    margin: -5px 0 0;
+
+    li.slide-trigger {
+      padding: 0;
+      margin: 5px 0;
+
+      a {
+        padding: 0.3rem 1rem 0.3rem 3.2rem;
+        background-color: $light;
+        line-height: 2.2;
+        display: block;
+        border-radius: 3px;
+        color: $mid;
+
+        img {
+          min-width: auto;
+          position: absolute;
+          left: 1.25rem;
+          top: 0.75rem;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        &:hover {
+          background-color: darken($light, 2%);
+        }
+
+        &.active {
+          color: $bluem;
+          background-color: darken($light, 2%);
+
+          &:hover {
+            background-color: darken($light, 2%);
+          }
+        }
+      }
+    }
+  }
+
+  img.arrow {
+    min-width: 14px;
+    width: 14px;
+    position: relative;
+    margin: -2px 0 0 5px;
+  }
+
+  .button.primary {
+    margin-top: 2.5rem;
+  }
+}
