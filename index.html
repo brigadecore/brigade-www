@@ -2,7 +2,7 @@
 layout: default
 title: Brigade | Event-driven scripting for Kubernetes.
 description: "Brigade is a tool for running scriptable automated tasks in the cloud. Brigade runs as part of a Kubernetes cluster."
-keywords: Brigade,Kubernetes,Azure,Kube,Deploy,CI,CD,Pipeline,Scripting,Automating,Webhook,Events,k8s,Containers,Helm,Simple,Cloud,Application,App,Brigade.sh
+keywords: Brigade,Kubernetes,CNCF,Kube,Deploy,CI,CD,Pipeline,Scripting,Automating,Webhook,Events,k8s,Containers,Helm,Simple,Cloud,Application,App,Brigade.sh
 ---
 
 <nav id="topbar">
@@ -10,7 +10,7 @@ keywords: Brigade,Kubernetes,Azure,Kube,Deploy,CI,CD,Pipeline,Scripting,Automati
     <a href="//brigade.sh" title="Brigade.sh"><h1 class="logo small-4 medium-2 columns"><img src="assets/images/brigade.png" title="Brigade" alt="Brigade" /></h1></a>
     <ul class="inline-list right medium-6 medium-offset-4 columns">
       <li><a href="https://docs.brigade.sh/" title="Brigade Documentation">Docs</a></li>
-      <li><a href="https://github.com/azure/brigade/" title="Brigade on Github">Github</a></li>
+      <li><a href="https://github.com/brigadecore/brigade/" title="Brigade on Github">Github</a></li>
     </ul>
   </div>
 </nav>
@@ -21,7 +21,7 @@ keywords: Brigade,Kubernetes,Azure,Kube,Deploy,CI,CD,Pipeline,Scripting,Automati
     <h1>Event-driven scripting for Kubernetes.</h1>
     <h2>Brigade is a tool for running scriptable, automated tasks in the cloud &mdash; as part of your Kubernetes cluster.</h2>
 
-    <a href="https://github.com/azure/brigade" title="Brigade Github" class="button round primary">Get Brigade</a>
+    <a href="https://github.com/brigadecore/brigade" title="Brigade Github" class="button round primary">Get Brigade</a>
   </div>
 
 </section>
@@ -152,7 +152,7 @@ events.on("exec", (e, p) => {
       </div>
 
       <div class="center">
-        <a class="button rounded center primary" href="https://github.com/Azure/brigade" target="_blank">
+        <a class="button rounded center primary" href="https://github.com/brigadecore/brigade" target="_blank">
           Get Brigade
         </a>
       </div>
@@ -182,7 +182,7 @@ events.on("exec", (e, p) => {
           <aside class="cli">
             <pre>
 <em>// install brigade using helm</em>
-helm repo add brigade https://azure.github.io/brigade
+helm repo add brigade https://brigadecore.github.io/brigade
 helm install brigade/brigade -- name brigade-server
 
 <em>// check brigade status</em>
