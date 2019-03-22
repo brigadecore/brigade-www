@@ -3,6 +3,8 @@
 
 [Brigade.sh](//brigade.sh) is the website for [the Brigade Project](https://github.com/brigadecore/brigade).
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4053560a-ff76-48ce-9841-5b145db53fb5/deploy-status)](https://app.netlify.com/sites/brigade-sh/deploys)
+
 --
 
 ## Site Development
