@@ -5,7 +5,7 @@
     "url": "https://github.com/deis/brigade-www.git"
   },
   "version": "0.0.1",
-  "devDependencies": {
+  "dependencies": {
     "critical": "^0.7.3",
     "del": "^2.2.2",
     "font-awesome": "^4.7.0",
