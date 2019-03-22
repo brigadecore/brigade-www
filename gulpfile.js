@@ -6,7 +6,7 @@
 // Load plugins
 var gulp = require('gulp'),
   del = require('del');
-  sass = require('gulp-ruby-sass'),
+  sass = require('gulp-sass'),
   autoprefixer = require('gulp-autoprefixer'),
   uncss = require('gulp-uncss'),
   cache = require('gulp-cache'),
@@ -27,11 +27,13 @@ var gulp = require('gulp'),
   shell = require('gulp-shell'),
   deployGH = require('gulp-gh-pages'),
   runSequence = require('run-sequence');
+  sass.compiler = require('node-sass');
 
 
 // Styles
 gulp.task('styles', function () {
-  return sass('assets/scss/brigade-app.scss', {style: 'compressed'})
+  return gulp.src('assets/scss/brigade-app.scss')
+    .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer('last 2 version'))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
@@ -112,8 +114,12 @@ gulp.task('scriptminify', function () {
     .pipe(gulp.dest('_site/assets/js/'))
     .pipe(notify({message: 'Scripts minified.'}));
 });
-gulp.task('scripts', function () {
-  gulp.start('scriptconcat', 'scriptminify');
+gulp.task('scripts', gulp.series('scriptconcat', 'scriptminify'), function () {});
+
+
+// Clean
+gulp.task('clean', function () {
+  return del('_site/assets/', {force: true});
 });
 
 
@@ -132,43 +138,25 @@ gulp.task('deploy-gh-pages', function() {
     .pipe(deployGH())
     .pipe(notify({message: 'Site deployed to Github Pages.'}));
 });
-gulp.task('deploy', function () {
-  runSequence(
-    'clean',
-    'jekyllb',
-    ['styles', 'images', 'scripts'],
-    'copy',
-    //['styles-uncss', 'styles-inline'],
-    'deploy-gh-pages'
-  );
-});
+gulp.task('deploy', gulp.series('clean', 'jekyllb', 'styles', 'images', 'scripts',
+'copy', 'deploy-gh-pages'), function () {});
 
-
-// Clean
-gulp.task('clean', function () {
-  return del('_site/assets/', {force: true});
-});
 
 
 // Default task
-gulp.task('default', function () {
-  runSequence(
-    'clean',
-    'styles', 'images', 'scripts'
-  );
-});
+gulp.task('default', gulp.series('clean', 'styles', 'images', 'scripts'), function () {});
 
 // Watch task
 gulp.task('watch', function () {
 
   // Watch .scss files
-  gulp.watch('assets/scss/**/*.scss', ['styles']);
+  gulp.watch('assets/scss/**/*.scss', gulp.series('styles'));
 
   // Watch image files
-  gulp.watch('images/**/*.{png,gif,jpg}', ['images']);
+  gulp.watch('images/**/*.{png,gif,jpg}', gulp.series('images'));
 
   // Watch js files
-  gulp.watch('assets/js/app.js', ['scripts']);
+  gulp.watch('assets/js/app.js', gulp.series('scripts'));
 
   // Create LiveReload server
   livereload.listen();

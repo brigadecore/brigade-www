@@ -3,6 +3,8 @@
 .DS_Store
 .sass-cache/
 .publish/
+.vscode/
+vendor/
 
 ### Jekyll ###
 _site/
