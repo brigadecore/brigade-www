@@ -114,8 +114,12 @@ gulp.task('scriptminify', function () {
     .pipe(gulp.dest('_site/assets/js/'))
     .pipe(notify({message: 'Scripts minified.'}));
 });
-gulp.task('scripts', function () {
-  gulp.start('scriptconcat', 'scriptminify');
+gulp.task('scripts', gulp.series('scriptconcat', 'scriptminify'), function () {});
+
+
+// Clean
+gulp.task('clean', function () {
+  return del('_site/assets/', {force: true});
 });
 
 
@@ -134,31 +138,13 @@ gulp.task('deploy-gh-pages', function() {
     .pipe(deployGH())
     .pipe(notify({message: 'Site deployed to Github Pages.'}));
 });
-gulp.task('deploy', function () {
-  runSequence(
-    'clean',
-    'jekyllb',
-    ['styles', 'images', 'scripts'],
-    'copy',
-    //['styles-uncss', 'styles-inline'],
-    'deploy-gh-pages'
-  );
-});
+gulp.task('deploy', gulp.series('clean', 'jekyllb', 'styles', 'images', 'scripts',
+'copy', 'deploy-gh-pages'), function () {});
 
-
-// Clean
-gulp.task('clean', function () {
-  return del('_site/assets/', {force: true});
-});
 
 
 // Default task
-gulp.task('default', function () {
-  runSequence(
-    'clean',
-    'styles', 'images', 'scripts'
-  );
-});
+gulp.task('default', gulp.series('clean', 'styles', 'images', 'scripts'), function () {});
 
 // Watch task
 gulp.task('watch', function () {
