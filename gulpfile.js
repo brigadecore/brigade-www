@@ -150,13 +150,13 @@ gulp.task('default', gulp.series('clean', 'styles', 'images', 'scripts'), functi
 gulp.task('watch', function () {
 
   // Watch .scss files
-  gulp.watch('assets/scss/**/*.scss', ['styles']);
+  gulp.watch('assets/scss/**/*.scss', gulp.series('styles'));
 
   // Watch image files
-  gulp.watch('images/**/*.{png,gif,jpg}', ['images']);
+  gulp.watch('images/**/*.{png,gif,jpg}', gulp.series('images'));
 
   // Watch js files
-  gulp.watch('assets/js/app.js', ['scripts']);
+  gulp.watch('assets/js/app.js', gulp.series('scripts'));
 
   // Create LiveReload server
   livereload.listen();
