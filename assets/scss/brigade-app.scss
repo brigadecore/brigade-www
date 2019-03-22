@@ -275,7 +275,7 @@ footer {
   }
 
   .project-family {
-    padding-top: 3.25rem;
+    padding-top: 0rem;
     text-align: right;
     position: relative;
     z-index: 999;
@@ -290,7 +290,7 @@ footer {
       font-size: 0.825rem;
       border-radius: 3em;
       position: absolute;
-      top: -1.5rem;
+      top: -4.5rem;
       right: 0rem;
       min-width: 12rem;
       z-index: 820;
@@ -421,6 +421,36 @@ footer {
       width: 55%;
       border-top: 1px dashed darken($bluel, 10%);
       z-index: -1;
+    }
+  }
+}
+
+.cncf-wrap {
+  max-width: 100%;
+}
+
+.cncf {
+  background: desaturate(#f0f0f0, 50%);
+  min-height: 2rem;
+  text-align: center;
+  padding-left: 300px;
+  border-top: 1px solid #fff;
+
+  img {
+    float: left;
+    display: inline-block;
+    max-width: 10rem;
+    margin: 1.5rem 0 1.5rem 7.5%;
+  }
+
+  p {
+    float: right;
+    margin: 1.5rem 2.5% 0 0;
+    display: inline-block;
+    color: $blued;
+
+    &:hover {
+      color: $mid;
     }
   }
 }
