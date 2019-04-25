@@ -182,8 +182,8 @@ events.on("exec", (e, p) => {
           <aside class="cli">
             <pre>
 <em>// install brigade using helm</em>
-helm repo add brigade https://brigadecore.github.io/brigade
-helm install brigade/brigade -- name brigade-server
+helm repo add brigade https://brigadecore.github.io/charts
+helm install brigade/brigade --name brigade-server
 
 <em>// check brigade status</em>
 helm get brigade-server
