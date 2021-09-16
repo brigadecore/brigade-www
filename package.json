@@ -2,7 +2,7 @@
   "name": "brigade.sh",
   "repository": {
     "type": "git",
-    "url": "https://github.com/deis/brigade-www.git"
+    "url": "https://github.com/brigadecore/brigade-www.git"
   },
   "version": "0.0.1",
   "dependencies": {
