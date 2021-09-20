@@ -29,7 +29,7 @@ The site runs on port 4000, ie [localhost:4000](http://localhost:4000/)
 
 ## Deploying
 
-The jekyll site is hosted on the Deislabs Netlify account. Changes to master are auto-deployed.
+This website is built with the [Jekyll](https://jekyllrb.com/) site generator, and hosted on the Deislabs [Netlify](https://app.netlify.com/sites/brigade-sh/deploys) account. Changes to the `main` branch are auto-deployed to the live environment.
 
 # Contributing
 
