@@ -35,8 +35,8 @@ keywords: Brigade,Kubernetes,CNCF,Kube,Deploy,CI,CD,Pipeline,Scripting,Automatin
 
         <div class="medium-7 columns">
 
-          <h2>Simple, powerful pipes</h2>
-          <p>Each project uses a script file written in either JavaScript or TypeScript, which is where you can write dynamic, interwoven pipelines and tasks to handle inbound events. Leave your YAML at home!</p>
+          <h2>Simple, powerful scripting</h2>
+          <p>Each project uses JavaScript or TypeScript to implement dynamic event-handling.</p>
 
           <ul class="example-orbit-content" data-orbit>
             <li data-orbit-slide="headline-1">
@@ -47,11 +47,12 @@ import { events, Event, Job } from "@brigadecore/brigadier"
 const localPath = "/workspaces/brigade"
 
 events.on("brigade.sh/github", "push", async event => {
-  let test = new Job("test", "debian:latest", event)
+  let test = new Job("test", "golang:1.17", event)
   test.primaryContainer.sourceMountPath = localPath
   test.primaryContainer.workingDirectory = localPath
-  test.primaryContainer.command = ["bash"]
-  test.primaryContainer.arguments = ["-c", "make test"]
+  test.primaryContainer.command = ["make"]
+  test.primaryContainer.arguments = ["test"]
+
   await test.run()
 })
 
@@ -60,14 +61,15 @@ events.process()
             </li>
             <li data-orbit-slide="headline-2">
               <pre>
-<em>// Update a CosmosDB database using JavaScript</em>
+<em>// Update a MongoDB database using JavaScript</em>
 const { events, Job } = require("@brigadecore/brigadier");
 
 events.on("brigade.sh/cli", "exec", async event => {
-  let mongo = new Job("update-db", "mongo:3.2", event);
+  let mongo = new Job("update-db", "mongo:5.0.3", event);
   mongo.primaryContainer.environment = {
-    COSMOS_NAME: event.project.secrets.cosmosName,
-    COSMOS_KEY: event.project.secrets.cosmosKey
+    MONGO_URL: event.project.secrets.mongoURL,
+    MONGO_USER: event.project.secrets.mongoUser,
+    MONGO_PASSWORD: event.project.secrets.mongoPassword
   };
   mongo.primaryContainer.command = ["bash"];
   mongo.primaryContainer.arguments = [
@@ -78,8 +80,7 @@ events.on("brigade.sh/cli", "exec", async event => {
 });
 
 function dbCmd(p, script) {
-  return 'mongo ${COSMOS_NAME}.documents.azure.com:10255/test ' +
-    '-u ${COSMOS_NAME} -p ${COSMOS_KEY} --ssl --sslAllowInvalidCertificates ' +
+  return 'mongo ${MONGO_URL}/test -u ${MONGO_USER} -p ${MONGO_PASSWORD}' +
     `--eval '${script}'`
 }
 
@@ -205,19 +206,20 @@ helm get all brigade --namespace brigade
 
   <!-- TODO: add html; make pretty; i.e. bug Ronan -->
 
-  What's new in Brigade v2?
+  <h2>What's new in Brigade v2?</h2>
 
-Brigade has been re-designed from the ground up, bringing some exciting features and notable improvements over v1.
-
-However, much of Brigade's core functionality remains the same. We're still focused on cloud-native, event-driven scripting.
-
-Here are some of the highlights:
-
-  * Brigade continues to run on Kubernetes; however, users of Brigade never have to interact with Kubernetes directly.
-  * Brigade offers full management of user and service account authorization/authentication.
-  * Brigade persists all logs to its backing data store so that underlying Kubernetes resources (pods, secrets, etc.) can be removed once completed, leaving the Kubernetes cluster in a clean, manageable state.
-  * Brigade enables high event throughput via its backing message queue -- and substrate resources are distributed fairly so that a project with heavy activity won't block other projects when events come in.
-  * Brigade's Gateway ecosystem is growing rapidly, with gateways for GitHub, DockerHub, CloudEvents and more. Developers can utilize official SDKs to write their own.
+  <p>Brigade has been re-designed from the ground up, bringing some exciting features and notable improvements over v1.</p>
+    
+  <p>However, much of Brigade's core functionality remains the same. We're still focused on cloud-native, event-driven scripting.</p>
+    
+  <p>Here are some of the highlights:</p>
+  <ul class="fancy">
+    <li>Brigade continues to run on Kubernetes; however, users of Brigade never have to interact with Kubernetes directly.</li>
+    <li>Brigade offers full management of user and service account authorization/authentication.</li>
+    <li>Brigade persists all logs to its backing data store so that underlying Kubernetes resources (pods, secrets, etc.) can be removed once completed, leaving the Kubernetes cluster in a clean, manageable state.</li>
+    <li>Brigade enables high event throughput via its backing message queue -- and substrate resources are distributed fairly so that a project with heavy activity won't block other projects when events come in.</li>
+    <li>Brigade's Gateway ecosystem is growing rapidly, with gateways for GitHub, DockerHub, CloudEvents and more. Developers can utilize official SDKs to write their own.</li>
+  </ul>
 
 </section>
 
