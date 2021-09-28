@@ -45,7 +45,7 @@ keywords: Brigade,Kubernetes,CNCF,Kube,Deploy,CI,CD,Pipeline,Scripting,Automatin
                 <li class="slide-container">
                   <div class="slide-image">
     <pre><em>// Run unit tests for a Github push using TypeScript</em>
-    import { events, Event, Job } from "@brigadecore/brigadier"
+    import { events, Job } from "@brigadecore/brigadier"
 
     const localPath = "/workspaces/brigade"
 
@@ -110,18 +110,13 @@ keywords: Brigade,Kubernetes,CNCF,Kube,Deploy,CI,CD,Pipeline,Scripting,Automatin
                 <li class="slide-container">
                   <div class="slide-image">
                     <pre>
-    <em>// Send a Slack message in JavaScript</em>
-    const { events, Job } = require("@brigadecore/brigadier");
+    <em>// Handle a Slack message event in JavaScript</em>
+    const { events } = require("@brigadecore/brigadier");
 
-    events.on("brigade.sh/cli", "exec", async event => {
-      let slack = new Job("slack-notify", "technosophos/slack-notify:latest", event);
-      slack.primaryContainer.environment = {
-        SLACK_WEBHOOK: event.project.secrets.SLACK_WEBHOOK,
-        SLACK_USERNAME: "Brigade",
-        SLACK_TITLE: "Hello from Brigade",
-        SLACK_MESSAGE: "This is a message from Brigade"
-      };
-      await slack.run();
+    events.on("brigade.sh/slack", "hello", async event => {
+      console.log("Hello " + event.payload + "!");
+
+      return "Message received!";
     });
 
     events.process();
