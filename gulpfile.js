@@ -93,7 +93,6 @@ gulp.task('images', function () {
 // Scripts
 gulp.task('scriptconcat', function () {
   return gulp.src([
-      'assets/js/vendor/jquery.js',
       'assets/js/vendor/headroom.min.js'
     ])
     .pipe(concat('vendor.js'))
@@ -144,7 +143,7 @@ gulp.task('deploy', gulp.series('clean', 'jekyllb', 'styles', 'images', 'scripts
 
 
 // Default task
-gulp.task('default', gulp.series('clean', 'styles', 'images', 'scripts'), function () {});
+gulp.task('default', gulp.series('clean', 'styles', 'images'), function () {});
 
 // Watch task
 gulp.task('watch', function () {
@@ -156,7 +155,7 @@ gulp.task('watch', function () {
   gulp.watch('images/**/*.{png,gif,jpg}', gulp.series('images'));
 
   // Watch js files
-  gulp.watch('assets/js/app.js', gulp.series('scripts'));
+  // gulp.watch('assets/js/app.js', gulp.series('scripts'));
 
   // Create LiveReload server
   livereload.listen();

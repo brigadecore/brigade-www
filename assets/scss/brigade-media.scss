@@ -159,9 +159,11 @@
       auto;
 
       .cli {
-        width: 90%;
-        right: 5%;
+        width: 100%;
+        right: 0%;
+        left: -2.5%;
         margin-top: 0;
+        margin-left: 0;
 
         pre {
           font-size: 10px;
