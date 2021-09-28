@@ -425,8 +425,13 @@ footer {
   }
 }
 
-.cncf-wrap {
-  max-width: 100%;
+#whats-new-in-v2 {
+  padding-top: 4rem;
+  padding-bottom: 7.5rem;
+}
+
+.row.cncf-wrap {
+  max-width: 100% !important;
 }
 
 .cncf {
@@ -439,7 +444,8 @@ footer {
   img {
     float: left;
     display: inline-block;
-    max-width: 10rem;
+    min-width: 6%;
+    max-width: 15rem;
     margin: 1.5rem 0 1.5rem 7.5%;
   }
 
