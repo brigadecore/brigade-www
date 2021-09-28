@@ -260,24 +260,31 @@ helm get all brigade --namespace brigade
 
 <!-- In place of Kashti (no v2 variant yet in the works), I thought perhaps a 'What's new in v2' section might be relevant. -->
 <section id="whats-new-in-v2" class="brigade-interface content">
+  <div class="row">
+    <div class="small-12 medium-11 medium-offset-1 columns">
 
-  <!-- TODO: add html; make pretty; i.e. bug Ronan -->
+      <div class="titles">
+        <h2>What's new in Brigade v2?</h2>
+      </div>
 
-  <h2>What's new in Brigade v2?</h2>
+      <p>Brigade has been re-designed from the ground up, bringing some exciting features and notable improvements over v1. However, much of Brigade's core functionality remains the same. We're still focused on cloud-native, event-driven scripting.</p>
 
-  <p>Brigade has been re-designed from the ground up, bringing some exciting features and notable improvements over v1.</p>
-    
-  <p>However, much of Brigade's core functionality remains the same. We're still focused on cloud-native, event-driven scripting.</p>
-    
-  <p>Here are some of the highlights:</p>
-  <ul class="fancy">
-    <li>Brigade continues to run on Kubernetes; however, users of Brigade never have to interact with Kubernetes directly.</li>
-    <li>Brigade offers full management of user and service account authorization/authentication.</li>
-    <li>Brigade persists all logs to its backing data store so that underlying Kubernetes resources (pods, secrets, etc.) can be removed once completed, leaving the Kubernetes cluster in a clean, manageable state.</li>
-    <li>Brigade enables high event throughput via its backing message queue -- and substrate resources are distributed fairly so that a project with heavy activity won't block other projects when events come in.</li>
-    <li>Brigade's Gateway ecosystem is growing rapidly, with gateways for GitHub, DockerHub, CloudEvents and more. Developers can utilize official SDKs to write their own.</li>
-  </ul>
+      <p>Here are some of the highlights:</p>
+      
+      <ul class="fancy">
+        <li>Brigade continues to run on Kubernetes; however, users of Brigade never have to interact with Kubernetes directly.</li>
+        <li>Brigade offers full management of user and service account authorization/authentication.</li>
+        <li>Brigade persists all logs to its backing data store so that underlying Kubernetes resources (pods, secrets, etc.) can be removed once completed, leaving the Kubernetes cluster in a clean, manageable state.</li>
+        <li>Brigade enables high event throughput via its backing message queue -- and substrate resources are distributed fairly so that a project with heavy activity won't block other projects when events come in.</li>
+        <li>Brigade's Gateway ecosystem is growing rapidly, with gateways for GitHub, DockerHub, CloudEvents and more. Developers can utilize official SDKs to write their own.</li>
+      </ul>
 
+      <div class="titles text-center">
+        <a href="https://v2--brigade-docs.netlify.app/intro/quickstart/" title="Brigade 2 Docs" class="button round primary">Brigade 2 Docs</a>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <footer>
