@@ -311,18 +311,18 @@ footer {
         right: 38px;
         z-index: 110;
 
-        &:after {
-          content: " ";
-          display: block;
-          position: absolute;
-          bottom: -25px;
-          right: -10px;
-          height: 30px;
-          width: 1px;
-          border-left: 1px dashed darken($bluel, 10%);
-          z-index: 100;
-          transform: rotate(-45deg);
-        }
+        // &:first-child:after {
+        //   content: " ";
+        //   display: block;
+        //   position: absolute;
+        //   bottom: -25px;
+        //   right: -10px;
+        //   height: 30px;
+        //   width: 1px;
+        //   border-left: 1px dashed darken($bluel, 10%);
+        //   z-index: 100;
+        //   transform: rotate(-45deg);
+        // }
       }
     }
 
@@ -418,7 +418,7 @@ footer {
       right: 1em;
       bottom: 48px;
       height: 1px;
-      width: 55%;
+      width: 32%;
       border-top: 1px dashed darken($bluel, 10%);
       z-index: -1;
     }
