@@ -14,3 +14,20 @@
 }
 
 $work: 'work_sansregular', 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+
+ul.fancy {
+  // column-count: 2;
+
+  li {
+    padding: 0 25% 0.5rem 2rem;
+    background: url(../images/asterisk-01.svg) no-repeat 0 4px;
+
+    &:nth-child(even) {
+      background: url(../images/asterisk-01.svg) no-repeat 0 4px;
+    }
+
+    &:nth-child(odd) {
+      background: url(../images/asterisk-02.svg) no-repeat 0 4px;
+    }
+  }
+}

@@ -311,18 +311,18 @@ footer {
         right: 38px;
         z-index: 110;
 
-        &:after {
-          content: " ";
-          display: block;
-          position: absolute;
-          bottom: -25px;
-          right: -10px;
-          height: 30px;
-          width: 1px;
-          border-left: 1px dashed darken($bluel, 10%);
-          z-index: 100;
-          transform: rotate(-45deg);
-        }
+        // &:first-child:after {
+        //   content: " ";
+        //   display: block;
+        //   position: absolute;
+        //   bottom: -25px;
+        //   right: -10px;
+        //   height: 30px;
+        //   width: 1px;
+        //   border-left: 1px dashed darken($bluel, 10%);
+        //   z-index: 100;
+        //   transform: rotate(-45deg);
+        // }
       }
     }
 
@@ -418,15 +418,20 @@ footer {
       right: 1em;
       bottom: 48px;
       height: 1px;
-      width: 55%;
+      width: 32%;
       border-top: 1px dashed darken($bluel, 10%);
       z-index: -1;
     }
   }
 }
 
-.cncf-wrap {
-  max-width: 100%;
+#whats-new-in-v2 {
+  padding-top: 4rem;
+  padding-bottom: 7.5rem;
+}
+
+.row.cncf-wrap {
+  max-width: 100% !important;
 }
 
 .cncf {
@@ -439,7 +444,8 @@ footer {
   img {
     float: left;
     display: inline-block;
-    max-width: 10rem;
+    min-width: 6%;
+    max-width: 15rem;
     margin: 1.5rem 0 1.5rem 7.5%;
   }
 
