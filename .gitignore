@@ -2,14 +2,11 @@
 .idea
 .DS_Store
 .sass-cache/
+.parcel-cache/
 .publish/
 .vscode/
 vendor/
-
-### Jekyll ###
-_site/
-_config_local.yml
-.jekyll-metadata
+dist/
 
 ### NPM ###
 node_modules/
