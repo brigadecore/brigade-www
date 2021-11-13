@@ -1,15 +1,7 @@
-// Import Dependencies (package.json)
-// ---------------------------------------
-//
-
-@import "foundation/normalize.scss";
-@import "foundation/foundation.scss";
-@import "motion-ui/motion-ui.scss";
-
-
 // Import Brigade Styles
 // ---------------------------------------
-//
+// base framework is bulma css (loaded in head via cdn)
+// base font-family is work sans (loaded in head via cdn)
 @import "brigade-settings.scss";
 @import "brigade-type.scss";
 //
