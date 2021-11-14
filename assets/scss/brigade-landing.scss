@@ -2,22 +2,6 @@
 // ---------------------------------------
 //
 #hero {
-  background-image: 
-    url(../../assets/images/pipes-left.png),
-    url(../../assets/images/pipes-right.png),
-    linear-gradient(-45deg, #93a5cf 0%, #e4efe9 100%);
-  background-repeat: 
-    no-repeat,
-    no-repeat,
-    no-repeat;
-  background-position: 
-    0% 50%,
-    100% 105%,
-    center;
-  background-size: 
-    450px,
-    180px,
-    auto;
   text-align: center;
   padding: 5em 0 0;
   min-height: 620px;
