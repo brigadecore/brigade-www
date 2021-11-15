@@ -15,8 +15,6 @@
     "gulp-connect": "^5.7.0",
     "gulp-cssnano": "^2.1.3",
     "gulp-gh-pages": "^0.5.4",
-    "gulp-imagemin": "^8.0.0",
-    "gulp-inline-css": "^4.0.0",
     "gulp-jshint": "^2.1.0",
     "gulp-livereload": "^4.0.2",
     "gulp-minify-css": "^1.2.4",
@@ -33,8 +31,7 @@
     "normalize.scss": "^0.1.0",
     "npm-check-updates": "^12.0.2",
     "penthouse": "^2.3.2",
-    "run-sequence": "^2.2.1",
-    "streamqueue": "^1.1.2",
+    "sass": "^1.43.4",
     "uglify": "^0.1.5"
   }
 }

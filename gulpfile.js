@@ -6,12 +6,10 @@
 // Load plugins
 var gulp = require('gulp'),
   del = require('del');
-  sass = require('gulp-sass'),
+  var sass = require('gulp-sass')(require('sass')),
   autoprefixer = require('gulp-autoprefixer'),
   uncss = require('gulp-uncss'),
-  cache = require('gulp-cache'),
   cssnano = require('gulp-cssnano'),
-  imagemin = require('gulp-imagemin'),
   livereload = require('gulp-livereload'),
   minifycss = require('gulp-minify-css'),
   uglify = require('gulp-uglify'),
@@ -21,13 +19,9 @@ var gulp = require('gulp'),
   uglify = require('gulp-uglify'),
   jshint = require('gulp-jshint'),
   sourcemaps = require('gulp-sourcemaps'),
-  streamqueue = require('streamqueue'),
   critical = require('critical'),
-  inlineCss = require('gulp-inline-css'),
   shell = require('gulp-shell'),
-  deployGH = require('gulp-gh-pages'),
-  runSequence = require('run-sequence');
-  sass.compiler = require('node-sass');
+  deployGH = require('gulp-gh-pages');
 
 
 // Styles
@@ -42,7 +36,6 @@ gulp.task('styles', function () {
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest( 'assets/css'))
     .pipe(gulp.dest( '_site/assets/css'))
-    .pipe(notify({message: 'Styles task complete'}))
 });
 
 // UnCSS
@@ -53,15 +46,16 @@ gulp.task('styles-uncss', function () {
       timeout: 1000
     }))
     .pipe(gulp.dest( '_site/assets/'))
-    .pipe(notify({message: 'Styles - UnCSS task complete'}))
 });
 
 // Inline Critical CSS
 gulp.task('styles-inline', function (cb) {
   critical.generate({
+    inline: true,
     base: '_site/',
     src: 'index.html',
-    css: ['assets/css/brigade-app.min.css'],
+    css: 'assets/css/brigade-app.min.css',
+    target: '_includes/critical.min.css',
     dimensions: [{
       width: 320,
       height: 480
@@ -72,22 +66,9 @@ gulp.task('styles-inline', function (cb) {
       width: 1280,
       height: 960
     }],
-    dest: '_includes/critical.min.css',
-    minify: true,
-    extract: false,
     ignore: ['font-face']
   })
-});
-
-// Images
-gulp.task('images', function () {
-  return streamqueue({objectMode: true},
-    gulp.src('assets/images/**/*{.jpg,.png,.gif}')
-      .pipe(cache(imagemin({optimizationLevel: 3, progressive: true, interlaced: true})))
-      // .pipe(notify({message: 'Image minifed'}))
-      .pipe(gulp.dest('assets/images/'))
-      .pipe(gulp.dest('_site/assets/images/'))
-  )
+  cb();
 });
 
 // Scripts
@@ -98,7 +79,6 @@ gulp.task('scriptconcat', function () {
     ])
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest('assets/js/'))
-    .pipe(notify({message: 'Scripts concated.'}));
 });
 gulp.task('scriptminify', function () {
   return gulp.src([
@@ -111,8 +91,7 @@ gulp.task('scriptminify', function () {
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(gulp.dest('assets/js/'))
-    .pipe(gulp.dest('_site/assets/js/'))
-    .pipe(notify({message: 'Scripts minified.'}));
+    .pipe(gulp.dest('_site/assets/js/'));
 });
 gulp.task('scripts', gulp.series('scriptconcat', 'scriptminify'), function () {});
 
@@ -127,33 +106,28 @@ gulp.task('clean', function () {
 gulp.task('copy', function () {
   var sourceFiles = ['fonts/**'];
   return gulp.src(sourceFiles)
-    .pipe(gulp.dest('_site/assets/'))
-    .pipe(notify({message: 'Copied all.'}));
+    .pipe(gulp.dest('_site/assets/'));
 });
 
 gulp.task('jekyllb', shell.task(['bundle exec jekyll b']));
 
 gulp.task('deploy-gh-pages', function() {
   return gulp.src('_site/**/*')
-    .pipe(deployGH())
-    .pipe(notify({message: 'Site deployed to Github Pages.'}));
+    .pipe(deployGH());
 });
-gulp.task('deploy', gulp.series('clean', 'jekyllb', 'styles', 'images', 'scripts',
+gulp.task('deploy', gulp.series('clean', 'jekyllb', 'styles', 'scripts',
 'copy', 'deploy-gh-pages'), function () {});
 
 
 
 // Default task
-gulp.task('default', gulp.series('clean', 'styles', 'images', 'scripts'), function () {});
+gulp.task('default', gulp.series('clean', 'styles', 'scripts'), function () {});
 
 // Watch task
 gulp.task('watch', function () {
 
   // Watch .scss files
   gulp.watch('assets/scss/**/*.scss', gulp.series('styles'));
-
-  // Watch image files
-  gulp.watch('images/**/*.{png,gif,jpg}', gulp.series('images'));
 
   // Watch js files
   gulp.watch('assets/js/app.js', gulp.series('scripts'));

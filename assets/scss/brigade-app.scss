@@ -72,12 +72,32 @@ small {
   @include vertical-align;
 }
 
+.sticky-banner {
+  font-size: .925rem;
+  text-align: center;
+  color: #fff;
+  padding: .75rem 0 .5rem;
+  position: absolute;
+  background: #37b0e7;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 800;
+  line-height: 1;
+
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+}
+
 #topbar {
   position: absolute;
   width: 100%;
   height: 106px;
   z-index: 900;
-  top: 0;
+  top: 36px;
   left: 0;
   padding: 0.5em 0;
   background: rgba(255,255,255,0);
