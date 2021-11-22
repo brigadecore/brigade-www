@@ -29,8 +29,8 @@
   
   <body>
 
-    <aside>
-      <p>Brigade v2 has arrived! <a href="#v2">Find out what's new</a>. If you are looking for Brigade v1 click here.</p>
+    <aside class="sticky-banner">
+      <p>Brigade v2 has arrived! <a href="#v2">Find out what's new</a>. &nbsp; If you are looking for <a href="https://v1.brigade.sh">Brigade v1</a> click here.</p>
     </aside>
 
     <nav class="navbar is-transparent" role="navigation" aria-label="main navigation" id="topbar">
@@ -54,31 +54,249 @@
       <div class="columns is-centered">
         <div class="column is-two-thirds">
           <h1>Brigade is a tool for running<br>
-            scriptable, automated tasks.</h1>
-            
+            scriptable, automated tasks.</h1>   
         </div>
       </div>
     </div>
 
-    <div class="row fullheight" id="uses">
+    <section id="code" class="brigade-examples content">
+      <div class="row">
+        <div class="columns is-centered retrobox">
+          <div class="column is-half">
+            <div class="carousel-wrapper">
+
+              <h2>Simple, powerful scripting</h2>
+              <p>Each project uses JavaScript or TypeScript to implement dynamic event-handling.</p>
+
+              <div class="carousel">
+                <ul class="slides">
+                  <input type="radio" name="radio-buttons" id="img-1" checked />
+                  <li class="slide-container">
+                    <div class="slide-image">
+  <pre><em>// Run unit tests for a Github push using TypeScript</em>
+  import { events, Job } from "@brigadecore/brigadier"
+
+  const localPath = "/workspaces/brigade"
+
+  events.on("brigade.sh/github", "push", async event => {
+    let test = new Job("test", "golang:1.17", event)
+    test.primaryContainer.sourceMountPath = localPath
+    test.primaryContainer.workingDirectory = localPath
+    test.primaryContainer.command = ["make"]
+    test.primaryContainer.arguments = ["test"]
+
+    await test.run()
+  })
+
+  events.process()</pre>
+                    </div>
+                    <div class="carousel-controls">
+                      <label for="img-2" class="next-slide">
+                        <span>&rsaquo;</span>
+                      </label>
+                    </div>
+                  </li>
+                  <input type="radio" name="radio-buttons" id="img-2" />
+                  <li class="slide-container">
+                    <div class="slide-image">
+                  <pre>
+  <em>// Update a MongoDB database using JavaScript</em>
+  const { events, Job } = require("@brigadecore/brigadier");
+
+  events.on("brigade.sh/cli", "exec", async event => {
+    let mongo = new Job("update-db", "mongo:5.0.3", event);
+    mongo.primaryContainer.environment = {
+      MONGO_URL: event.project.secrets.mongoURL,
+      MONGO_USER: event.project.secrets.mongoUser,
+      MONGO_PASSWORD: event.project.secrets.mongoPassword
+    };
+    mongo.primaryContainer.command = ["bash"];
+    mongo.primaryContainer.arguments = [
+      "-c",
+      dbCmd(event.project, `db.mydb.insert(${event.payload})`)
+    ];
+    await mongo.run();
+  });
+
+  function dbCmd(p, script) {
+    return 'mongo ${MONGO_URL}/test -u ${MONGO_USER} -p ${MONGO_PASSWORD}' +
+      `--eval '${script}'`
+  }
+
+  events.process();
+                  </pre>
+                    </div>
+                    <div class="carousel-controls">
+                      <label for="img-1" class="prev-slide">
+                        <span>&lsaquo;</span>
+                      </label>
+                      <label for="img-3" class="next-slide">
+                        <span>&rsaquo;</span>
+                      </label>
+                    </div>
+                  </li>
+                  <input type="radio" name="radio-buttons" id="img-3" />
+                  <li class="slide-container">
+                    <div class="slide-image">
+                <pre>
+  <em>// Handle a Slack message event in JavaScript</em>
+  const { events } = require("@brigadecore/brigadier");
+
+  events.on("brigade.sh/slack", "hello", async event => {
+    console.log("Hello " + event.payload + "!");
+
+    return "Message received!";
+  });
+
+  events.process();
+                  </pre>
+                    </div>
+                    <div class="carousel-controls">
+                      <label for="img-2" class="prev-slide">
+                        <span>&lsaquo;</span>
+                      </label>
+                      <label for="img-4" class="next-slide">
+                        <span>&rsaquo;</span>
+                      </label>
+                    </div>
+                  </li>
+                  <input type="radio" name="radio-buttons" id="img-4" />
+                  <li class="slide-container">
+                    <div class="slide-image">
+                <pre>
+  <em>// Utilize a shared workspace between jobs in JavaScript</em>
+  const { events, Job } = require("@brigadecore/brigadier");
+
+  events.on("brigade.sh/cli", "exec", async event => {
+    let job1 = new Job("first-job", "debian:latest", event);
+    job1.primaryContainer.workspaceMountPath = "/share";
+    job1.primaryContainer.command = ["bash"];
+    job1.primaryContainer.arguments = ["-c", "echo 'Hello!' > /share/message"];
+    await job1.run();
+
+    let job2 = new Job("second-job", "debian:latest", event);
+    job2.primaryContainer.workspaceMountPath = "/share";
+    job2.primaryContainer.command = ["cat"];
+    job2.primaryContainer.arguments = ["/share/message"];
+    await job2.run();
+  });
+
+  events.process();
+                  </pre>
+                    </div>
+                    <div class="carousel-controls">
+                      <label for="img-3" class="prev-slide">
+                        <span>&lsaquo;</span>
+                      </label>
+                    </div>
+                  </li>
+                  <div class="carousel-dots">
+                    <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
+                    <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
+                    <label for="img-3" class="carousel-dot" id="img-dot-3"></label>
+                    <label for="img-4" class="carousel-dot" id="img-dot-4"></label>
+                  </div>
+                </ul> <!-- /Slides -->
+
+                <ul class="slide-triggers">
+                  <li class="slide-trigger">
+                    <label for="img-1" id="img-dot-1">
+                      <img src="assets/images/ex-icon-01.png" /> Unit tests for a GitHub push
+                    </label>
+                  </li>
+                  <li class="slide-trigger">
+                    <label for="img-2" id="img-dot-2">
+                      <img src="assets/images/ex-icon-07.png" /> Update a CosmosDB database
+                    </label>
+                  </li>
+                  <li class="slide-trigger">
+                    <label for="img-3" id="img-dot-3">
+                      <img src="assets/images/ex-icon-05.png" /> Send a Slack message
+                    </label>
+                  </li>
+                  <li class="slide-trigger">
+                    <label for="img-4" id="img-dot-4">
+                      <img src="assets/images/ex-icon-02.png" /> Utilize a shared workspace between jobs
+                    </label>
+                  </li>
+                </ul>
+              </div>
+
+            </div> <!-- /column -->
+          </div>
+
+            <div class="column is-half code-examples">
+              <h4>Example use cases:</h4>
+
+              <p>Check out <a href="https://docs.brigade.sh/" target="_blank">our docs</a> for more. <img src="assets/images/arrow.png" class="arrow" /></p>
+            </div>          
+    
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kubernetes" class="brigade-cluster content retrobox">
+      <div class="row">
+        <div class="columns">
+          <div class="is-half column">
+    
+            <h2>Runs inside your cluster</h2>
+            <p>By running Brigade as a service inside your <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> cluster, you can harness the power of millions of available Docker images.</p>
+  
+            <p>Brigade can be used to chain containers together to build processing pipelines.</p>
+            <ul class="fancy">
+              <li>Watch for incoming requests from services like GitHub, Docker, and Trello</li>
+              <li>Run unit tests, process data, and store results</li>
+              <li>Send notifications through services like Slack and Twitter</li>
+            </ul>
+          </div>
+          
+          <div class="is-half column">
+            <aside class="cli">
+              <pre>
+  <em>// install Brigade using Helm v3.7.0+</em>
+  export HELM_EXPERIMENTAL_OCI=1
+  
+  helm install brigade \
+  oci://ghcr.io/brigadecore/brigade \
+  --version v2.0.0 \
+  --create-namespace \
+  --namespace brigade
+  
+  <em>// check Brigade status</em>
+  helm get all brigade --namespace brigade
+              </pre>
+            </aside>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <div class="row fullwidth content" id="video">
       <div class="columns">
-        <div class="column">
-          <h2>Brigade is a tool for running scriptable, automated tasks in the cloud &mdash; as part of your Kubernetes cluster.</h2>
+        <div class="column retrobox is-one-third is-left">
+          <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/nvYaWfgzT78?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <p><a href="https://www.youtube.com/channel/UCjeocwsYKby4BFVT8IWlr-A">See more Brigade videos</a></p>
         </div>
       </div>
     </div>
 
-    <div class="row fullheight" id="scripting">
+    <div class="row fullwidth content" id="community">
       <div class="columns">
-        <div class="column">
-          <h2>Brigade is a tool for running scriptable, automated tasks in the cloud &mdash; as part of your Kubernetes cluster.</h2>
+
+        <div class="column is-offset-one-third is-half retrobox">
+          <h2>Fast &amp; Flexible</h2>
+          <p>Brigade is designed for teams. It is not a SaaS, nor does it require a legion of domain experts to configure and run it. Instead, it should be easy to install, configure, and maintain.</p>
+          <p>Brigade is designed to quickly and efficently handle large volumes of events - check out the <a href="https://github.com/brigadecore/brigade-noisy-neighbor">Noisy Neighbor</a> and <a href="https://github.com/brigadecore/brigade-metrics">Brigade Metrics</a> repos, which offer operational and testing insights into Brigade 2.</p>
         </div>
       </div>
     </div>
 
-    <div class="row fullheight" id="v2">
-      <div class="columns">
-        <div class="column">
+    <div class="row fullwidth" id="v2">
+      <div class="columns is-left content">
+        <div class="column retrobox retrobox-v2 is-three-quarters">
           <h2>What's new in Brigade v2?</h2>
 
           <p>Brigade has been <a href="https://github.com/brigadecore/brigade/tree/master/2.0-PROPOSAL">re-designed</a> from the ground up, bringing some exciting features and notable improvements over v1. However, much of Brigade's core functionality remains the same. We're still focused on cloud-native, event-driven scripting. Here are some of the highlights:</p>
@@ -91,21 +309,13 @@
             <li>Brigade's Gateway ecosystem is growing rapidly, with gateways for GitHub, DockerHub, CloudEvents and more. Developers can utilize official SDKs to write their own.</li>
           </ul>
 
-          <div class="titles text-center">
-            <a href="https://v2--brigade-docs.netlify.app/intro/quickstart/" title="Brigade 2 Docs" class="button round primary">Brigade 2 Docs</a>
-          </div>
-
+          <p>
+            Learn more in the <a href="https://v2--brigade-docs.netlify.app/intro/quickstart/">Brigade 2 documentation</a>.
+            <br><br>
           </p>
         </div>
-      </div>
-    </div>
-
-    <div class="row fullheight" id="community">
-      <div class="columns">
-        <div class="column">
-          <h2>Fast &amp; Flexible</h2>
-          <p>Brigade is designed for teams. It is not a SaaS, nor does it require a legion of domain experts to configure and run it. Instead, it should be easy to install, configure, and maintain.</p>
-          <p>Brigade is designed to quickly and efficently handle large volumes of events - check out the <a href="https://github.com/brigadecore/brigade-noisy-neighbor">Noisy Neighbor</a> and <a href="https://github.com/brigadecore/brigade-metrics">Brigade Metrics</a> repos, which offer operational and testing insights into Brigade 2.</p>
+        <div class="column is-one-quarter">
+          &nbsp;
         </div>
       </div>
     </div>
@@ -146,8 +356,9 @@
         <div class="columns is-centered">
           <div class="column brigade-logo">
             <a href="https://brigade.sh/" title="Brigade">
-              <img src="assets/images/brigade-event-icon.png" title="Brigade" alt="Brigade" class="brigade-logo-sm" />
-              <br>
+              <strong>
+                &nbsp;
+              </strong><br>
               <img src="assets/images/wordmark.svg" title="Brigade" alt="Brigade" />
             </a>
           </div>
@@ -190,6 +401,8 @@
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/plugins/foundation.orbit.min.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
