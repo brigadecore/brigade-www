@@ -376,6 +376,19 @@ svg {
   min-height: 65vw;
   margin-bottom: -12.5vw;
 
+  &:after {
+    background: url(../../assets/images/skytop.svg) no-repeat 0% 0%;
+    background-size: contain;
+    display: inline-block;
+    content: " ";
+    position: absolute;
+    top: -12vw;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
   h1 {
     font-family: $work;
     font-weight: 400;
@@ -385,6 +398,89 @@ svg {
     color: #18104E;
     position: absolute;
   }
+
+
+  .dots em {
+    background: white;
+    width: 1rem;
+    height: 1rem;
+    margin: auto;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 12.5vw;
+    left: 25vw;
+    animation: slideRight 3s linear infinite;
+    transition: all 0.7s ease;
+
+    &:first-of-type {
+      top: 12.5vw;
+      left: -2vw;
+      animation: slideRight 3s linear infinite;
+    }
+
+    &:nth-child(2) {
+      top: 34vw;
+      left: -2vw;
+      animation: slideRight 4s linear infinite;
+    }
+
+    &:nth-child(3) {
+      top: 15vw;
+      left: -2vw;
+      animation: slideLeft 1.8s linear infinite;
+    }
+
+    &:nth-child(4) {
+      top: 50vw;
+      left: -2vw;
+      animation: slideRight 3.67s linear infinite;
+    }
+
+    &:nth-child(4) {
+      top: 25vw;
+      left: -2vw;
+      animation-delay: 1s;
+      animation: slideLeft 2.33s linear infinite;
+    }
+
+    &:nth-child(5) {
+      top: 22.5vw;
+      left: -2vw;
+      animation-delay: 1.25s;
+      animation: slideRight 2s linear infinite;
+    }
+
+    &:last-of-type {
+      bottom: -1vw;
+      left: -2vw;
+      animation: slideLeft 5s linear infinite;
+    }
+  }
+
+  @keyframes slideRight {
+    from {
+      left: -2vw;
+      background: white;
+    }
+
+    to {
+      left: 102vw;
+      background: #1AAC9D;
+    }
+  }
+
+  @keyframes slideLeft {
+    from {
+      right: -2vw;
+      background: white;
+    }
+
+    to {
+      right: 102vw;
+      background: #1AAC9D;
+    }
+  }
+
 }
 
 .retrobox {
@@ -407,6 +503,7 @@ svg {
 
 #code {
   position: absolute;
+  top: 87vh;
   left: 10vw;
   right: 5vw;
   width: 90vw;
@@ -420,6 +517,7 @@ svg {
 
 #kubernetes {
   position: absolute;
+  top: 125vh;
   left: 10vw;
   right: 5vw;
   width: 95vw;
@@ -432,7 +530,7 @@ svg {
   position: absolute;
   left: 10vw;
   right: 10vw;
-  top: 3190px;
+  top: 205vh;
   width: 92vw;
   z-index: 400;
 }
@@ -441,7 +539,7 @@ svg {
   position: absolute;
   left: 12vw;
   right: 10vw;
-  top: 3050px;
+  top: 200vh;
   width: 90vw;
   z-index: 400;
 
@@ -454,7 +552,7 @@ svg {
   position: absolute;
   left: 10vw;
   right: 10vw;
-  top: 3880px;
+  top: 250vh;
   width: 80vw;
   z-index: 500;
 }

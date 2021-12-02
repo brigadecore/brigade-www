@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1077px" height="622px" viewBox="0 0 1077 622" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <defs>
+        <linearGradient x1="59.8561776%" y1="40.7382815%" x2="50%" y2="54.9797458%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0.17" offset="0%"></stop>
+            <stop stop-color="#B3F4FF" stop-opacity="0.17" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="59.8561776%" y1="40.7382815%" x2="50%" y2="54.9797458%" id="linearGradient-2">
+            <stop stop-color="#30267F" stop-opacity="0.17" offset="0%"></stop>
+            <stop stop-color="#B3F4FF" stop-opacity="0.17" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Path" fill="url(#linearGradient-1)" points="-10.4960938 343.199219 511.894531 158.929687 644.117187 245.101562 938.507812 136.042969 1077 203.894531 1077 -5.90063742e-15 -6.38845801e-16 0 -10.4960938 335.214844"></polygon>
+        <polygon id="Path" fill="url(#linearGradient-2)" opacity="0.300000012" points="0 343.199219 522.390625 158.929687 654.613281 245.101562 949.003906 136.042969 1087.49609 203.894531 1087.49609 -5.90063742e-15 10.4960938 0 0 335.214844"></polygon>
+    </g>
+</svg>
