@@ -3,8 +3,13 @@
 }
 
 @media screen and (max-width: 1024px) {
-
-
+    body {
+        min-height: 350vh;
+    }
+    
+    .pipe-wrapper {
+        min-height: 350vh !important;
+    }
 }
 
 @media screen and (max-width: 620px) {
