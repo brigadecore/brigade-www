@@ -93,6 +93,11 @@ small {
   }
 }
 
+.navbar-burger {
+  position: absolute;
+  z-index: 1301;
+}
+
 .navbar {
   background: transparent;
   padding-top: 2rem;
@@ -355,8 +360,6 @@ footer {
 .pipe-wrapper {
   margin-top: -37.5vw;
   min-height: 200vh;
-  // position: relative;
-  // z-index: 10;
 }
 
 path {
@@ -517,7 +520,6 @@ svg {
 
 #kubernetes {
   position: absolute;
-  top: 125vh;
   left: 10vw;
   right: 5vw;
   width: 95vw;
@@ -556,3 +558,5 @@ svg {
   width: 80vw;
   z-index: 500;
 }
+
+/* refer to brigade-media.scss for the layout positioning adustments per breakpoint */
