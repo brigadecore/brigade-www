@@ -81,7 +81,7 @@
     <section id="code" class="brigade-examples content">
       <div class="row">
         <div class="columns is-centered retrobox">
-          <div class="column is-half">
+          <div class="column is-half-tablet">
             <div class="carousel-wrapper">
 
               <h2>Simple, powerful scripting</h2>
@@ -244,7 +244,7 @@
             </div> <!-- /column -->
           </div>
 
-            <div class="column is-half code-examples">
+            <div class="column is-half-tablet code-examples">
               <h4>Example use cases:</h4>
 
               <p>Check out <a href="https://docs.brigade.sh/" target="_blank">our docs</a> for more. <img src="assets/images/arrow.png" class="arrow" /></p>
@@ -257,8 +257,8 @@
 
     <section id="kubernetes" class="brigade-cluster content retrobox">
       <div class="row">
-        <div class="columns">
-          <div class="is-half column">
+        <div class="columns is-mobile">
+          <div class="is-half-tablet column">
     
             <h2>Runs inside your cluster</h2>
             <p>By running Brigade as a service inside your <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> cluster, you can harness the power of millions of available Docker images.</p>
@@ -269,9 +269,11 @@
               <li>Run unit tests, process data, and store results</li>
               <li>Handling events from services like Slack</li>
             </ul>
+
+            <iframe width="100%" height="315" class="is-hidden-tablet" src="https://www.youtube-nocookie.com/embed/EqJ9_k56Q3U?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           
-          <div class="is-half column">
+          <div class="is-half column is-hidden-mobile">
             <aside class="cli">
               <pre>
   <em>// install Brigade using Helm v3.7.0+</em>
@@ -293,8 +295,8 @@
       </div>
     </section>
 
-    <div class="row fullwidth content" id="video">
-      <div class="columns">
+    <div class="row fullwidth content is-hidden-mobile" id="video">
+      <div class="columns is-mobile">
         <div class="column retrobox is-one-third is-left">          
           <iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/EqJ9_k56Q3U?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <p><a href="https://www.youtube.com/channel/UCjeocwsYKby4BFVT8IWlr-A">See more Brigade videos</a></p>
@@ -303,9 +305,9 @@
     </div>
 
     <div class="row fullwidth content" id="community">
-      <div class="columns">
+      <div class="columns is-mobile">
 
-        <div class="column is-offset-one-third is-half retrobox">
+        <div class="column is-offset-one-third-tablet is-half-tablet retrobox">
           <h2>Fast &amp; Flexible</h2>
           <p>Brigade is designed for teams. It is not a SaaS, nor does it require a legion of domain experts to configure and run it. Instead, it should be easy to install, configure, and maintain.</p>
           <p>Brigade is designed to quickly and efficently handle large volumes of events - check out the <a href="https://github.com/brigadecore/brigade-noisy-neighbor">Noisy Neighbor</a> and <a href="https://github.com/brigadecore/brigade-metrics">Brigade Metrics</a> repos, which offer operational and testing insights into Brigade 2.</p>
@@ -314,8 +316,8 @@
     </div>
 
     <div class="row fullwidth" id="v2">
-      <div class="columns is-left content">
-        <div class="column retrobox retrobox-v2 is-three-quarters">
+      <div class="columns is-left is-mobile content">
+        <div class="column retrobox retrobox-v2 is-three-quarters-tablet is-full-mobile">
           <h2>What's new in Brigade v2?</h2>
 
           <p>Brigade has been <a href="https://github.com/brigadecore/brigade/tree/master/2.0-PROPOSAL">re-designed</a> from the ground up, bringing some exciting features and notable improvements over v1. However, much of Brigade's core functionality remains the same. We're still focused on cloud-native, event-driven scripting. Here are some of the highlights:</p>
@@ -378,7 +380,7 @@
               <strong>
                 &nbsp;
               </strong><br>
-              <img src="assets/images/wordmark.svg" title="Brigade" alt="Brigade" />
+              <img src="assets/images/wordmark.svg" title="Brigade" alt="Brigade" class="is-hidden-mobile" />
             </a>
           </div>
           <div class="column">

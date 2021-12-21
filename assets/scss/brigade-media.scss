@@ -53,30 +53,48 @@
         height: auto !important;
     }
 
+    #code {
+        ul.slide-triggers {
+            margin: -5px 0 0;
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            min-width: 100% !important;
+        }
+
+        h4 {
+            display: none !important;
+        }
+
+        p {
+            margin-top: 0 !important;
+        }
+    }
+
     .retrobox.retrobox-v2 {
         margin: 0 !important;
     }
 
-    #kubernetes {
-        width: 95vw;
-        height: 500px;
-        top: 2280px;
-    }
+    // #kubernetes {
+    //     width: 95vw;
+    //     height: 500px;
+    //     top: 2280px;
+    // }
 
-    video {
-        top: 205vh;
-        width: 92vw;
-    }
+    // video {
+    //     top: 205vh;
+    //     width: 92vw;
+    // }
 
-    #community {
-        left: 12vw;
-        right: 10vw;
-        top: 200vh;
-    }
+    // #community {
+    //     left: 12vw;
+    //     right: 10vw;
+    //     top: 200vh;
+    // }
 
-    #v2 {
-        top: 250vh;
-    }
+    // #v2 {
+    //     top: 250vh;
+    // }
 }
 
 /* tablet and up */
