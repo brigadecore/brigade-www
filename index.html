@@ -39,8 +39,14 @@
           <img src="assets/images/brigade.svg" title="Brigade" alt="Brigade" />
         </a>
       </div>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarTop">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
   
-      <div class="navbar-menu">
+      <div class="navbar-menu" id="navbarTop">
         <div class="navbar-end">
           <li class="navbar-item"><a href="https://brigade.sh/" title="Brigade Home">Home</a></li>
           <li class="navbar-item"><a href="https://docs.brigade.sh/" title="Brigade Documentation">Docs</a></li>
@@ -53,7 +59,7 @@
     <div class="row fullheight fullwidth" id="intro">
       <div class="columns is-centered">
         <div class="column is-two-thirds">
-          <h1>Brigade is a tool for running<br>
+          <h1>Brigade is a tool for running
             scriptable, automated tasks.</h1>   
         </div>
       </div>
@@ -435,6 +441,32 @@
           ga('create', 'UA-130516746-5', 'www.brigade.sh');
       }
       ga('send', 'pageview');
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+
+          // Add a click event on each of them
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+
+              // Get the target from the "data-target" attribute
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+
+            });
+          });
+        }
+
+        });
     </script>
 
   </body>
