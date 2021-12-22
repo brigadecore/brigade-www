@@ -74,40 +74,19 @@
     .retrobox.retrobox-v2 {
         margin: 0 !important;
     }
-
-    // #kubernetes {
-    //     width: 95vw;
-    //     height: 500px;
-    //     top: 2280px;
-    // }
-
-    // video {
-    //     top: 205vh;
-    //     width: 92vw;
-    // }
-
-    // #community {
-    //     left: 12vw;
-    //     right: 10vw;
-    //     top: 200vh;
-    // }
-
-    // #v2 {
-    //     top: 250vh;
-    // }
 }
 
 /* tablet and up */
 @media screen and (min-width: 769px) {
     .pipe-wrapper {
         margin-top: -37.5vw;
-        min-height: 200vh;
+        min-height: 3550px !important;
     }
 
     .navbar {
         z-index: 1100;
         padding-top: 0 !important;
-        min-height: 12rem !important;
+        min-height: 10rem !important;
 
         .navbar-burger {
             margin-top: -7rem !important;
@@ -115,31 +94,41 @@
     }
 
     #intro {
-        padding-top: 22.5vw;
+        padding-top: 15vw !important;
         position: relative;
         min-height: 65vw;
         margin-bottom: -12.5vw;
+    
+        h1 {
+            font-size: 5vw !important;
+            padding: 0;
+            max-width: 50vw;
+        }
+    }
+
+    #code {
+        top: 680px !important;
+        left: 5vw !important;
     }
 
     #kubernetes {
-        width: 95vw;
-        height: 500px;
-        top: 2280px;
+        top: 1540px !important;
     }
 
-    video {
-        top: 205vh;
-        width: 92vw;
+    #video {
+        top: 2215px !important;
+        width: 100vw !important;
     }
 
     #community {
-        left: 12vw;
-        right: 10vw;
-        top: 200vh;
+        top: 2140px !important;
     }
 
     #v2 {
-        top: 250vh;
+        left: 0 !important;
+        right: 0 !important;
+        top: 2750px !important;
+        width: 120% !important;
     }
 }
 
@@ -150,16 +139,50 @@
     }
     
     .pipe-wrapper {
-        min-height: 350vh !important;
+        min-height: 3850px !important;
+    }
+
+    #intro {
+        min-height: 668px !important;
+        
+        h1 {
+            font-size: 3.5rem !important;
+        }
+    }
+
+    #code {
+        top: 962px !important;
+    }
+
+    #kubernetes {
+        top: 1880px !important;
+    }
+
+    #video {
+        top: 2610px !important;
+    }
+
+    #community {
+        top: 2520px !important;
+    }
+
+    #v2 {
+        top: 3120px !important;
     }
 }
 
 /* widescreen and up */
 @media screen and (min-width: 1216px) {
+    .pipe-wrapper {
+        min-height: 1850px !important;
+    }
 
 }
 
 /* fullhd and up */
 @media screen and (min-width: 1408px) {
+    .pipe-wrapper {
+        min-height: 1850px !important;
+    }
 
 }
