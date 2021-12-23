@@ -86,6 +86,10 @@ small {
   padding: 0.5rem 0 0.675rem;
   background-color: $bluem;
   color: white;
+  z-index: 1801;
+  position: relative;
+  left: 0;
+  right:0;
 
   a {
     color: white;
@@ -358,7 +362,7 @@ footer {
 }
 
 .pipe-wrapper {
-  margin-top: -37.5vw;
+  margin-top: -20.5vw;
   min-height: 200vh;
 }
 
@@ -381,7 +385,7 @@ svg {
 
   &:after {
     background: url(../../assets/images/skytop.svg) no-repeat 0% 0%;
-    background-size: contain;
+    background-size: cover;
     display: inline-block;
     content: " ";
     position: absolute;
