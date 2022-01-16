@@ -9,27 +9,22 @@
 
 ## Site Development
 
-This is a simple site site, build with Jekyll. The assets (css/fonts/images) are compiled and compressed via Gulp.
-
-Install dependencies:
+This is a simple one-page site; using [parcel](https://parceljs.org) to build assets. 
 
 ```
-gem install
-npm install
+// 1 install packages
+yarn
+
+// 2 compile the site
+yarn parcel index.html
 ```
 
-To run the site locally, you'll need to run these in seperate shells:
+The site runs at [localhost:1234](http://localhost:1234/)
 
-```
-bundle exec jekyll build
-gulp && gulp watch
-```
-
-The site runs on port 4000, ie [localhost:4000](http://localhost:4000/)
 
 ## Deploying
 
-This website is built with the [Jekyll](https://jekyllrb.com/) site generator, and hosted on the Deislabs [Netlify](https://app.netlify.com/sites/brigade-sh/deploys) account. Changes to the `main` branch are auto-deployed to the live environment.
+The site is deployed via the CNCF Projects [Netlify](https://app.netlify.com/sites/brigade-sh/deploys) account. Changes to the `main` branch are auto-deployed to the live environment.
 
 # Contributing
 

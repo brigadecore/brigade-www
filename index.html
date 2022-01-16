@@ -1,290 +1,475 @@
----
-layout: default
-title: Brigade | Event-driven scripting for Kubernetes.
-description: "Brigade is a tool for running scriptable automated tasks in the cloud. Brigade runs as part of a Kubernetes cluster."
-keywords: Brigade,Kubernetes,CNCF,Kube,Deploy,CI,CD,Pipeline,Scripting,Automating,Webhook,Events,k8s,Containers,Helm,Simple,Cloud,Application,App,Brigade.sh
----
+<!DOCTYPE html>
+<html>
 
-<nav id="topbar">
-  <div class="row">
-    <a href="https://brigade.sh" title="Brigade.sh"><h1 class="logo small-4 medium-2 columns"><img src="assets/images/brigade.png" title="Brigade" alt="Brigade" /></h1></a>
-    <ul class="inline-list right medium-6 medium-offset-4 columns">
-      <li><a href="https://brigade.sh/" title="Brigade Home">Home</a></li>
-      <li><a href="https://docs.brigade.sh/" title="Brigade Documentation">Docs</a></li>
-      <li><a href="https://blog.brigade.sh/" title="Brigade Blog">Blog</a></li>
-      <li><a href="https://github.com/brigadecore/brigade/" title="Brigade on Github">Github</a></li>
-    </ul>
-  </div>
-</nav>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <title>Brigade | Event-driven scripting (for Kubernetes)</title>
+    <meta name="description" content="Brigade is a tool for running scriptable automated tasks in the cloud. Brigade runs as part of a Kubernetes cluster.">
+    <meta name="keywords" content="Brigade,Kubernetes,CNCF,Kube,Deploy,CI,CD,Pipeline,Scripting,Automating,Webhook,Events,k8s,Containers,Helm,Simple,Cloud,Application,App,Brigade.sh">
+  
+    <!-- twitter card-->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@helmpack" />
+    <meta name="twitter:site" content="@helmpack" />
+    <meta name="twitter:title" content="Brigade | Event-driven scripting for Kubernetes." />
+    <meta name="twitter:description" content="Brigade is a tool for running scriptable automated tasks in the cloud. Brigade runs as part of a Kubernetes cluster." />
+    <meta name="twitter:image" content="//brigade.sh/design/avatar.png" />
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  
+    <!-- load assets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/scss/brigade-app.scss" />
+  </head>
+  
+  <body>
 
-<section id="hero" class="brigade-intro">
+    <aside class="sticky-banner">
+      <p>Brigade v2 has arrived! <a href="#v2">Find out what's new</a>. &nbsp; If you are looking for <a href="https://v1.brigade.sh">Brigade v1</a> click here.</p>
+    </aside>
 
-  <div class="titles">
-    <h1>Event-driven scripting for Kubernetes.</h1>
-    <h2>Brigade is a tool for running scriptable, automated tasks in the cloud &mdash; as part of your Kubernetes cluster.</h2>
-
-    <a href="https://docs.brigade.sh/intro/" title="Brigade Github" class="button round primary">Get Started</a>
-  </div>
-
-</section>
-
-<section id="code" class="brigade-examples content">
-  <div class="row">
-    <div class="small-12 medium-10 medium-offset-1 columns">
-      <div class="row">
-
-        <div class="medium-7 columns">
-
-          <h2>Simple, powerful pipes</h2>
-          <p>Each project gets a <code>brigade.js</code> config file, which is where you can write dynamic, interwoven pipelines and tasks for your Kubernetes cluster. Leave your YAML at home!</p>
-
-          <ul class="example-orbit-content" data-orbit>
-            <li data-orbit-slide="headline-1">
-              <pre>
-<em>// Run unit tests for a Github push</em>
-const { events, Job , Group} = require("brigadier");
-const dest = "$GOPATH/src/github.com/technosophos/ulid";
-
-events.on("push", (e, p) => {
-  console.log(e.payload)
-  var gh = JSON.parse(e.payload)
-  var test = new Job("test", "golang:1.9")
-  test.tasks = [
-    "mkdir -p " + dest,
-    "cp -a /src/* " + dest,
-    "cd " + dest,
-    "go get -u github.com/golang/dep/cmd/dep",
-    "dep ensure",
-    "make test"
-  ];
-  test.run()
-});
-              </pre>
-            </li>
-            <li data-orbit-slide="headline-2">
-              <pre>
-<em>// Updating a cosmosDB database</em>
-const { events, Job } = require("brigadier")
-
-events.on("exec", (e, p) => {
-  var mongo = new Job("update-db", "mongo:3.2")
-  mongo.storage.enabled = false
-  mongo.tasks = [
-      dbCmd(p, `db.mydb.insert(${e.payload})`)
-  ]
-  mongo.run()
-})
-
-function dbCmd(p, script) {
-  return `mongo ${p.secrets.cosmosName}.documents.azure.com:10255/test ` +
-    `-u ${p.secrets.cosmosName} -p  ${p.secrets.cosmosKey} --ssl --sslAllowInvalidCertificates ` +
-    `--eval '${script}'`
-}
-              </pre>
-            </li>
-            <li data-orbit-slide="headline-3">
-              <pre>
-<em>// Sending a Slack message</em>
-const { events, Job } = require("brigadier")
-
-events.on("exec", (e, p) => {
-  var slack = new Job("slack-notify", "technosophos/slack-notify:latest", ["/slack-notify"])
-  slack.env = {
-    SLACK_WEBHOOK: p.secrets.SLACK_WEBHOOK,
-    SLACK_USERNAME: "Brigade",
-    SLACK_TITLE: "Hello from Brigade",
-    SLACK_MESSAGE: "This is a message from Brigade"
- }
-  slack.run()
-}
-              </pre>
-            </li>
-            <li data-orbit-slide="headline-4">
-              <pre>
-<em>// Sending a Twitter DM</em>
-const { events, Job } = require("brigadier")
-
-const sendTo = "technosophos"
-
-events.on("exec", (e, p) => {
-  // Create a new job
-  const twitter = new Job("tweet", "technosophos/twitter-t:latest")
-  twitter.storage.enabled = false
-
-  // Set up the environment variables, copying them from the project.
-  twitter.env = {
-    OWNER: p.secrets.OWNER,
-    CONSUMER_KEY: p.secrets.CONSUMER_KEY,
-    CONSUMER_SECRET: p.secrets.CONSUMER_SECRET,
-    ACCESS_TOKEN: p.secrets.ACCESS_TOKEN,
-    ACCESS_SECRET: p.secrets.ACCESS_SECRET
-  }
-
-  // Set up the env and send a DM
-  twitter.tasks = [
-    "env2creds",
-    `t dm ${sendTo} "${p.name} got event ${e.type}"`
-  ]
-
-  twitter.run()
-})
-              </pre>
-          </ul> <!-- /orbit -->
-
-        </div> <!-- /column -->
-
-        <div class="medium-5 hidden-for-small-only columns">
-          <h4>Example use cases:</h4>
-          <ul>
-            <li class="slide-trigger"><a data-orbit-link="headline-1" aria-selected="true"><img src="assets/images/ex-icon-01.png" /> Unit tests for a Github push</a>
-            </li>
-            <li class="slide-trigger">
-              <a data-orbit-link="headline-2"><img src="assets/images/ex-icon-07.png" /> Updating a cosmosDB database</a>
-            </li>
-            <li class="slide-trigger">
-              <a data-orbit-link="headline-3"><img src="assets/images/ex-icon-05.png" /> Sending a Slack message</a>
-            </li>
-            <li class="slide-trigger">
-              <a data-orbit-link="headline-4"><img src="assets/images/ex-icon-06.png" /> Sending a Twitter DM</a>
-            </li>
-          </ul>
-
-          <p>Check out <a href="https://docs.brigade.sh/" target="_blank">our docs</a> for more. <img src="assets/images/arrow.png" class="arrow" /></p>
-        </div>
-      </div>
-
-      <div class="center">
-        <a class="button rounded center primary" href="https://github.com/brigadecore/brigade" target="_blank">
-          Get Brigade
+    <nav class="navbar is-transparent" role="navigation" aria-label="main navigation" id="topbar">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://brigade.sh">
+          <img src="assets/images/brigade.svg" title="Brigade" alt="Brigade" />
         </a>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<section id="kubernetes" class="brigade-cluster content">
-  <div class="row">
-    <div class="small-12 medium-11 medium-offset-1 columns">
-      <div class="row">
-        <div class="medium-6 columns">
-
-          <h2>Runs inside your cluster</h2>
-          <p>By running Brigade as a service inside your <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> cluster, you can harness the power of millions of available Docker images.</p>
-
-          <p>Brigade can be used to chain containers together to build processing pipelines.</p>
-          <ul class="fancy">
-            <li>Watch for incoming requests from services like GitHub, Docker, and Trello</li>
-            <li>Run unit tests, process data, and store results</li>
-            <li>Send notifications through services like Slack and Twitter</li>
-          </ul>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarTop">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+  
+      <div class="navbar-menu" id="navbarTop">
+        <div class="navbar-end">
+          <li class="navbar-item"><a href="https://brigade.sh/" title="Brigade Home">Home</a></li>
+          <li class="navbar-item"><a href="https://docs.brigade.sh/" title="Brigade Documentation">Docs</a></li>
+          <li class="navbar-item"><a href="https://blog.brigade.sh/" title="Brigade Blog">Blog</a></li>
+          <li class="navbar-item"><a href="https://github.com/brigadecore/brigade/" title="Brigade on Github">Github</a></li>
         </div>
+      </div>
+    </nav>
 
-        <div class="medium-6 columns">
-          <aside class="cli">
-            <pre>
-<em>// install brigade using helm</em>
-helm repo add brigade https://brigadecore.github.io/charts
-helm install brigade/brigade --name brigade-server
-
-<em>// check brigade status</em>
-helm get brigade-server
-            </pre>
-          </aside>
+    <div class="row fullheight fullwidth" id="intro">
+      <div class="columns is-centered">
+        <div class="column is-two-thirds">
+          <h1>Brigade is a tool for running
+            scriptable, automated tasks.</h1>   
         </div>
       </div>
 
+      <section class="dots">
+        <em></em>
+        <em></em>
+        <em></em>
+        <em></em>
+        <em></em>
+        <em></em>
+        <em></em>
+        <em></em>
+        <em></em>
+        <em></em>
+      </section>
     </div>
-  </div>
-</section>
 
-<section id="kashti" class="brigade-interface content">
-  <div class="row">
-    <div class="small-12 medium-10 medium-offset-1 columns">
+    <section id="code" class="brigade-examples content">
       <div class="row">
-        <div class="medium-6 columns">
-          <img src="assets/images/kashti-ui.png" alt="Kashti Dashboard" class="uipic" />
+        <div class="columns is-centered retrobox">
+          <div class="column is-half-tablet">
+            <div class="carousel-wrapper">
+
+              <h2>Simple, powerful scripting</h2>
+              <p>Each project uses JavaScript or TypeScript to implement dynamic event-handling.</p>
+
+              <div class="carousel">
+                <ul class="slides">
+                  <input type="radio" name="radio-buttons" id="img-1" checked />
+                  <li class="slide-container">
+                    <div class="slide-image">
+  <pre><em>// Run unit tests for a Github push using TypeScript</em>
+  import { events, Job } from "@brigadecore/brigadier"
+
+  const localPath = "/workspaces/brigade"
+
+  events.on("brigade.sh/github", "push", async event => {
+    let test = new Job("test", "golang:1.17", event)
+    test.primaryContainer.sourceMountPath = localPath
+    test.primaryContainer.workingDirectory = localPath
+    test.primaryContainer.command = ["make"]
+    test.primaryContainer.arguments = ["test"]
+
+    await test.run()
+  })
+
+  events.process()</pre>
+                    </div>
+                    <div class="carousel-controls">
+                      <label for="img-2" class="next-slide">
+                        <span>&rsaquo;</span>
+                      </label>
+                    </div>
+                  </li>
+                  <input type="radio" name="radio-buttons" id="img-2" />
+                  <li class="slide-container">
+                    <div class="slide-image">
+                  <pre>
+  <em>// Update a MongoDB database using JavaScript</em>
+  const { events, Job } = require("@brigadecore/brigadier");
+
+  events.on("brigade.sh/cli", "exec", async event => {
+    let mongo = new Job("update-db", "mongo:5.0.3", event);
+    mongo.primaryContainer.environment = {
+      MONGO_URL: event.project.secrets.mongoURL,
+      MONGO_USER: event.project.secrets.mongoUser,
+      MONGO_PASSWORD: event.project.secrets.mongoPassword
+    };
+    mongo.primaryContainer.command = ["bash"];
+    mongo.primaryContainer.arguments = [
+      "-c",
+      dbCmd(event.project, `db.mydb.insert(${event.payload})`)
+    ];
+    await mongo.run();
+  });
+
+  function dbCmd(p, script) {
+    return 'mongo ${MONGO_URL}/test -u ${MONGO_USER} -p ${MONGO_PASSWORD}' +
+      `--eval '${script}'`
+  }
+
+  events.process();
+                  </pre>
+                    </div>
+                    <div class="carousel-controls">
+                      <label for="img-1" class="prev-slide">
+                        <span>&lsaquo;</span>
+                      </label>
+                      <label for="img-3" class="next-slide">
+                        <span>&rsaquo;</span>
+                      </label>
+                    </div>
+                  </li>
+                  <input type="radio" name="radio-buttons" id="img-3" />
+                  <li class="slide-container">
+                    <div class="slide-image">
+                <pre>
+  <em>// Handle a Slack message event in JavaScript</em>
+  const { events } = require("@brigadecore/brigadier");
+
+  events.on("brigade.sh/slack", "hello", async event => {
+    console.log("Hello " + event.payload + "!");
+
+    return "Message received!";
+  });
+
+  events.process();
+                  </pre>
+                    </div>
+                    <div class="carousel-controls">
+                      <label for="img-2" class="prev-slide">
+                        <span>&lsaquo;</span>
+                      </label>
+                      <label for="img-4" class="next-slide">
+                        <span>&rsaquo;</span>
+                      </label>
+                    </div>
+                  </li>
+                  <input type="radio" name="radio-buttons" id="img-4" />
+                  <li class="slide-container">
+                    <div class="slide-image">
+                <pre>
+  <em>// Utilize a shared workspace between jobs in JavaScript</em>
+  const { events, Job } = require("@brigadecore/brigadier");
+
+  events.on("brigade.sh/cli", "exec", async event => {
+    let job1 = new Job("first-job", "debian:latest", event);
+    job1.primaryContainer.workspaceMountPath = "/share";
+    job1.primaryContainer.command = ["bash"];
+    job1.primaryContainer.arguments = ["-c", "echo 'Hello!' > /share/message"];
+    await job1.run();
+
+    let job2 = new Job("second-job", "debian:latest", event);
+    job2.primaryContainer.workspaceMountPath = "/share";
+    job2.primaryContainer.command = ["cat"];
+    job2.primaryContainer.arguments = ["/share/message"];
+    await job2.run();
+  });
+
+  events.process();
+                  </pre>
+                    </div>
+                    <div class="carousel-controls">
+                      <label for="img-3" class="prev-slide">
+                        <span>&lsaquo;</span>
+                      </label>
+                    </div>
+                  </li>
+                  <div class="carousel-dots">
+                    <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
+                    <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
+                    <label for="img-3" class="carousel-dot" id="img-dot-3"></label>
+                    <label for="img-4" class="carousel-dot" id="img-dot-4"></label>
+                  </div>
+                </ul> <!-- /Slides -->
+
+                <ul class="slide-triggers">
+                  <li class="slide-trigger">
+                    <label for="img-1" id="img-dot-1">
+                      <img src="assets/images/ex-icon-01.png" /> Unit tests for a GitHub push
+                    </label>
+                  </li>
+                  <li class="slide-trigger">
+                    <label for="img-2" id="img-dot-2">
+                      <img src="assets/images/ex-icon-07.png" /> Update a MongoDB database
+                    </label>
+                  </li>
+                  <li class="slide-trigger">
+                    <label for="img-3" id="img-dot-3">
+                      <img src="assets/images/ex-icon-05.png" /> Handle a Slack message
+                    </label>
+                  </li>
+                  <li class="slide-trigger">
+                    <label for="img-4" id="img-dot-4">
+                      <img src="assets/images/ex-icon-02.png" /> Utilize a shared workspace between jobs
+                    </label>
+                  </li>
+                </ul>
+              </div>
+
+            </div> <!-- /column -->
+          </div>
+
+            <div class="column is-half-tablet code-examples">
+              <h4>Example use cases:</h4>
+
+              <p>Check out <a href="https://docs.brigade.sh/" target="_blank">our docs</a> for more. <img src="assets/images/arrow.png" class="arrow" /></p>
+            </div>          
+    
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="medium-6 columns">
-          <h2>Kashti Dashboard: a place for your pipelines</h2>
-          <p>Output from Brigade can be sent to Kashti &mdash; a simple UI to display build results and logs.</p>
+    <section id="kubernetes" class="brigade-cluster content retrobox">
+      <div class="row">
+        <div class="columns is-mobile">
+          <div class="is-half-desktop column">
+    
+            <h2>Runs inside your cluster</h2>
+            <p>By running Brigade as a service inside your <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> cluster, you can harness the power of millions of available Docker images.</p>
+  
+            <p>Brigade can be used to chain containers together to build processing pipelines.</p>
+            <ul class="fancy">
+              <li>Watch for incoming requests from services like GitHub, Docker, and BitBucket</li>
+              <li>Run unit tests, process data, and store results</li>
+              <li>Handling events from services like Slack</li>
+            </ul>
 
-          <div class="btn-group">
-            <a class="button small rounded primary" href="https://github.com/brigadecore/kashti" target="_blank">
-              Get Kashti
+            <iframe width="100%" height="315" class="is-hidden-tablet" src="https://www.youtube-nocookie.com/embed/EqJ9_k56Q3U?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          
+          <div class="is-half column is-hidden-touch">
+            <aside class="cli">
+              <pre>
+  <em>// install Brigade using Helm v3.7.0+</em>
+  export HELM_EXPERIMENTAL_OCI=1
+  
+  helm install brigade \
+  oci://ghcr.io/brigadecore/brigade \
+  --version v2.0.0 \
+  --create-namespace \
+  --namespace brigade
+  
+  <em>// check Brigade status</em>
+  helm get all brigade --namespace brigade
+              </pre>
+            </aside>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <div class="row fullwidth content is-hidden-mobile" id="video">
+      <div class="columns is-mobile">
+        <div class="column retrobox is-one-third is-left">          
+          <iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/EqJ9_k56Q3U?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <p><a href="https://www.youtube.com/channel/UCjeocwsYKby4BFVT8IWlr-A">See more Brigade videos</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row fullwidth content" id="community">
+      <div class="columns is-mobile">
+
+        <div class="column is-offset-one-third-tablet is-half-tablet retrobox">
+          <h2>Fast &amp; Flexible</h2>
+          <p>Brigade is designed for teams. It is not a SaaS, nor does it require a legion of domain experts to configure and run it. Instead, it should be easy to install, configure, and maintain.</p>
+          <p>Brigade is designed to quickly and efficently handle large volumes of events - check out the <a href="https://github.com/brigadecore/brigade-noisy-neighbor">Noisy Neighbor</a> and <a href="https://github.com/brigadecore/brigade-metrics">Brigade Metrics</a> repos, which offer operational and testing insights into Brigade 2.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row fullwidth" id="v2">
+      <div class="columns is-left is-mobile content">
+        <div class="column retrobox retrobox-v2 is-three-quarters-desktop is-full-mobile">
+          <h2>What's new in Brigade v2?</h2>
+
+          <p>Brigade has been <a href="https://github.com/brigadecore/brigade/tree/master/2.0-PROPOSAL">re-designed</a> from the ground up, bringing some exciting features and notable improvements over v1. However, much of Brigade's core functionality remains the same. We're still focused on cloud-native, event-driven scripting. Here are some of the highlights:</p>
+          
+          <ul class="fancy">
+            <li>Brigade continues to run on Kubernetes; however, users of Brigade never have to interact with Kubernetes directly.</li>
+            <li>Brigade offers full management of user and service account authorization/authentication.</li>
+            <li>Brigade persists all logs to its backing data store so that underlying Kubernetes resources (pods, secrets, etc.) can be removed once completed, leaving the Kubernetes cluster in a clean, manageable state.</li>
+            <li>Brigade enables high event throughput via its backing message queue -- and substrate resources are distributed fairly so that a project with heavy activity won't block other projects when events come in.</li>
+            <li>Brigade's Gateway ecosystem is growing rapidly, with gateways for GitHub, DockerHub, CloudEvents and more. Developers can utilize official SDKs to write their own.</li>
+          </ul>
+
+          <p>
+            Learn more in the <a href="https://v2--brigade-docs.netlify.app/intro/quickstart/">Brigade 2 documentation</a>.
+            <br><br>
+          </p>
+        </div>
+        <div class="column is-one-quarter">
+          &nbsp;
+        </div>
+      </div>
+    </div>
+
+    <!-- pipes animation -->
+    <div class="pipe-wrapper">
+      <div id="pipes">
+        <svg viewBox="0 0 1400 3900" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5"><path d="M1225 25v550c0 50-50 100-100 100h-100c-50 0-100 50-100 100v400c0 50-50 100-100 100H325c-50 0-100 50-100 100v300c0 50 50 100 100 100h350c37.165 0 100 50 100 100v100c0 50-50 100-100 100H475c-50 0-100 50-100 100v100c0 50-50 100-100 100H175c-50 0-100 50-100 100v600c0 50 50 100 100 100h50c50 0 100 50 100 100v600" fill="none" stroke="#ffc233" stroke-width="50"/><path d="M1175 25v450c0 50-50 100-100 100H425c-50 0-100 50-100 100v400c0 50 50 100 100 100h500c50 0 100 50 100 100v100c0 44.415 50 100 100 100h100c52.316 0 100 50 100 100v200c0 50-50 100-100 100h-200c-50 0-100 50-100 100v200c0 50-50 100-100 100H525c-50 0-100 50-100 100v250c0 50 50 100 100 100h200c57.267 0 100 50 100 100v700c0 50-50 100-100 100H375c-50 0-100 50-100 100v150" fill="none" stroke="#f79649" stroke-width="50"/><path d="M1125 25v350c0 50-50 100-100 100H925c-50 0-100 50-100 100v200c0 50 50 100 100 100h300c50 0 100 50 100 100v500c0 50-50 100-100 100H225c-50 0-100 50-100 100v150c0 50 50 100 100 100h350c50 0 100 50 100 100v450c0 50 50 100 100 100h200c50 0 100 50 100 100v500c0 50-50 100-100 100H325c-50 0-100 50-100 100v500" fill="none" stroke="#f36652" stroke-width="50"/><path d="M1075 25v250c0 50-50 100-100 100H275c-50 0-100 50-100 100v400c0 50 50 100 100 100h400c50 0 100 50 100 100v600c0 50 50 100 100 100h100c50 0 100 50 100 100 0 5.947 3.883 63.273 3.883 150 0 50 46.117 100 96.117 100h100c50 0 100 50 100 100v700c0 50-50 100-100 100H275c-50 0-100 50-100 100v750" fill="none" stroke="#a17398" stroke-width="50"/><path d="M1025 25v150c0 50-50 100-100 100H725c-50 0-100 50-100 100v300c0 50-50 100-100 100H125c-50 0-100 50-100 100v500c0 50 50 100 100 100h300c50 0 100 50 100 100v800c0 66.541 50 100 100 100h500c50 0 100 50 100 100v200c0 50-50 100-100 100H625c-50 0-100 50-100 100v400c0 50-50 100-100 100H225c-50 0-100 50-100 100v300" fill="none" stroke="#3d88b0" stroke-width="50"/></svg>
+      </div>
+
+      <script src="https://unpkg.com/tornis@0.1.3/dist/tornis.js"></script>
+      <script type="text/javascript">
+        window.addEventListener('load', function () {
+          const stripes = document.getElementsByTagName("path");
+          function scrollChanged(){
+            for(var i = 0;i<stripes.length;i++){
+              stripes[i].style.strokeDashoffset = 7149*(1-(state.scroll.top/(state.size.docY - state.size.y)));
+            }
+          }
+
+          const { watchViewport } = tornis;
+          const { getViewportState } = tornis;
+
+          const updateValues = ({ size, scroll, mouse, orientation }) => {
+            state = getViewportState();
+            if (scroll.changed) {
+              scrollChanged();
+            }
+          };
+
+          watchViewport(updateValues);
+        });
+      </script>
+    </div>
+
+    <footer>
+      <div class="row footerwrap">
+        <div class="columns is-centered">
+          <div class="column brigade-logo">
+            <a href="https://brigade.sh/" title="Brigade">
+              <strong>
+                &nbsp;
+              </strong><br>
+              <img src="assets/images/wordmark.svg" title="Brigade" alt="Brigade" class="is-hidden-mobile" />
             </a>
+          </div>
+          <div class="column">
+            <h4>Project Links</h4>
+            <ul>
+              <li><a href="https://docs.brigade.sh/intro/quickstart/">Brigade Docs</a></li>
+              <li><a href="https://kubernetes.slack.com/archives/C87MF1RFD/">Slack</a> (#brigade)</li>
+              <li><a href="https://twitter.com/brigadecore">Twitter</a></li>
+              <li><a href="https://www.youtube.com/channel/UCjeocwsYKby4BFVT8IWlr-A">YouTube</a></li>
+            </ul>
+          </div>
+          <div class="column">
+            <h4>Community</h4>
+            <ul>
+              <li><a href="https://github.com/brigadecore/brigade/blob/master/code-of-conduct.md">Code of Conduct</a></li>
+              <li><a href="https://hackmd.io/KyyZMHyzSzGEiQY0ZHPqgw?view">Community Meeting</a></li>
+              <li><a href="https://github.com/brigadecore/community/blob/main/contributing.md">Contributing</a></li>
 
-            <a class="button small rounded secondary" href="https://brigadecore.github.io/kashti/dashboard" target="_blank">
-              Live Demo
-            </a>
+              
+            </ul>
+
+          </div>
+          <div class="column">
+            <div class="box cncf">
+              <p>Brigade is a <strong>Cloud Native Computing Foundation</strong> sandbox project.</p>
+
+              <p><a href="https://www.cncf.io/projects/brigade/" title="Cloud Native Computing Foundation" target="_blank"><img src="assets/images/cncf-color.png" alt="We are a Cloud Native Computing Foundation sandbox project" /></a></p>
+            </div>
           </div>
         </div>
 
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <p>© Brigade Authors 2021 | Documentation distributed under <a href="https://creativecommons.org/licenses/by/4.0">CC-BY-4.0</a>. © 2021 The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage</a> page.</p>
+            <hr>
+            <p>The <a href="https://codepen.io/andybarefoot/pen/WNrYqNj">"Scroll for pipes"</a> background animation is by <a href="https://twitter.com/andybarefoot">Andy Barefoot</a>. Used under <a href="https://blog.codepen.io/documentation/licensing/">MIT License</a>.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </footer>
 
-</section>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/plugins/foundation.orbit.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-<footer>
-  <div class="row">
-    <div class="small-10 small-offset-1 medium-5 columns">
-      <p>Brigade is made by some of the same fine people who brought you <a href="https://github.com/helm/helm">Helm</a> - open source development tools for <a href="https://kubernetes.io">Kubernetes</a>.</p>
-    </div>
-    <div class="medium-2 columns">&nbsp;</div>
-    <div class="medium-5 columns hide-for-small-only">
-      <div class="project-family">
+      if(window.localStorage) {
+          ga('create', 'UA-130516746-5', 'www.brigade.sh', {
+            'storage': 'none'
+            , 'clientId': window.localStorage.getItem('ga_clientId')
+          });
+          ga(function(tracker) {
+            window.localStorage.setItem('ga_clientId', tracker.get('clientId'));
+          });
+      }
+      else {
+          ga('create', 'UA-130516746-5', 'www.brigade.sh');
+      }
+      ga('send', 'pageview');
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-        <a href="https://helm.sh/" class="helm">
-          <img src="assets/images/helm-sm.png" title="Helm" alt="Helm" />
-          <p class="project-label">
-            <span>The package manager for Kubernetes.</span>
-            <em>&nbsp;</em>
-          </p>
-        </a>
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
 
-        <a href="//brigade.sh/" class="brigade">
-          <img src="assets/images/brigade-sm.png" title="Brigade" alt="Brigade" />
-          <p class="project-label">
-            <span>Event-driven scripting for Kubernetes.</span>
-            <em>&nbsp;</em>
-          </p>
-        </a>
-      </div>
-    </div>
-  </div>
-</footer>
+          // Add a click event on each of them
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
 
-<div class="row collapse full-width cncf-wrap">
-  <div class="small-12 medium-12 large-12 columns cncf">
-    <a href="https://www.cncf.io/" title="Cloud Native Computing Foundation" target="_blank">
-      <img src="assets/images/cncf-color.png" alt="We are a Cloud Native Computing Foundation sandbox project" />
-      <p>We are a <strong>Cloud Native Computing Foundation</strong> sandbox project.</p>
-    </a>
-  </div>
-</div>
+              // Get the target from the "data-target" attribute
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
 
-<script src="assets/js/vendor.min.js"></script>
-<script src="assets/js/foundation.js"></script>
-<script src="assets/js/app.min.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
 
-  if(window.localStorage) {
-      ga('create', 'UA-130516746-5', 'www.brigade.sh', {
-        'storage': 'none'
-        , 'clientId': window.localStorage.getItem('ga_clientId')
-      });
-      ga(function(tracker) {
-        window.localStorage.setItem('ga_clientId', tracker.get('clientId'));
-      });
-  }
-  else {
-      ga('create', 'UA-130516746-5', 'www.brigade.sh');
-  }
-  ga('send', 'pageview');
-</script>
+            });
+          });
+        }
+
+        });
+    </script>
+
+  </body>
+</html>

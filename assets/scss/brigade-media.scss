@@ -1,213 +1,188 @@
-@media screen and (min-width: 1140px) {
-  #hero {
-    background-size:
-      450px,
-      240px,
-      auto;
-  }
+/*  bulma css breakpoints:
+    mobile: up to 768px
+    tablet: from 769px
+    desktop: from 1024px
+    widescreen: from 1216px
+    fullhd: from 1408px
+*/
+
+
+/* mobile and under */
+@media screen and (max-width: 768px) {
+    .pipe-wrapper {
+        display: none !important;
+    }
+
+    .navbar {
+        z-index: 1100;
+        padding-top: 0 !important;
+        min-height: 12rem !important;
+
+        .navbar-brand {
+            img {
+                max-height: 5rem !important;
+            }
+        }
+
+        .navbar-burger {
+            margin-top: -7rem !important;
+        }
+    }
+
+    #intro {
+        padding-top: 22.5vw;
+        position: relative;
+        min-height: 65vw;
+        margin-bottom: -12.5vw;
+
+        h1 {
+            font-size: 5vw !important;
+            padding: 0 10vw;
+        }
+    }
+
+    #intro, #kubernetes, #code, #community, #v2 {
+        position: relative !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        width: 80% !important;
+        margin: 2rem 10% !important;
+        padding: 5rem 0 !important;
+        height: auto !important;
+    }
+
+    #code {
+        ul.slide-triggers {
+            margin: -5px 0 0;
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            min-width: 100% !important;
+        }
+
+        h4 {
+            display: none !important;
+        }
+
+        p {
+            margin-top: 0 !important;
+        }
+    }
+
+    .retrobox.retrobox-v2 {
+        margin: 0 !important;
+    }
 }
 
-@media screen and (max-width: 1024px) {
-  #hero {
-    background-image:
-      url(../../assets/images/pipes-left.png),
-      url(../../assets/images/pipes-right.png),
-      linear-gradient(-45deg, #93a5cf 0%, #e4efe9 100%);
-    background-repeat:
-      no-repeat,
-      no-repeat,
-      no-repeat;
-    background-position:
-      0% 170%,
-      100% 170%,
-      center;
-    background-size:
-      450px,
-      180px,
-      auto;
-
-    .titles {
-      margin-top: 150px;
-
-      h2 {
-        font-size: 1rem;
-        margin-bottom: 3rem;
-        padding: 0;
-      }
+/* tablet and up */
+@media screen and (min-width: 769px) {
+    .pipe-wrapper {
+        margin-top: -37.5vw;
+        min-height: 3550px !important;
     }
-  }
+
+    .navbar {
+        z-index: 1100;
+        padding-top: 0 !important;
+        min-height: 10rem !important;
+
+        .navbar-burger {
+            margin-top: -7rem !important;
+        }
+    }
+
+    #intro {
+        padding-top: 15vw !important;
+        position: relative;
+        min-height: 65vw;
+        margin-bottom: -12.5vw;
+    
+        h1 {
+            font-size: 5vw !important;
+            padding: 0;
+            max-width: 50vw;
+        }
+    }
+
+    #code {
+        top: 680px !important;
+        left: 5vw !important;
+    }
+
+    #kubernetes {
+        top: 1540px !important;
+    }
+
+    #video {
+        top: 2215px !important;
+        width: 100vw !important;
+    }
+
+    #community {
+        top: 2140px !important;
+    }
+
+    #v2 {
+        left: 0 !important;
+        right: 0 !important;
+        top: 2750px !important;
+        width: 120% !important;
+    }
 }
 
-@media screen and (max-width: 620px) {
-
-  #topbar {
-    height: 150px;
-    overflow: visible;
-    position: absolute;
-    top: 0;
-    background-color: transparent;
-
-    &:before {
-      display: none;
+/* desktop and up */
+@media screen and (min-width: 1024px) {
+    body {
+        min-height: 350vh;
+    }
+    
+    .pipe-wrapper {
+        min-height: 3850px !important;
     }
 
-    h1.logo {
-      position: absolute;
-      left: 50%;
-      max-width: 120px !important;
-      margin-left: -60px !important;
-    }
-
-    ul {
-      float: none !important;
-      text-align: center !important;
-      margin: 5.75em auto 0 !important;
-
-      li {
-        float: none !important;
-        text-align: center;
-
-        a {
-          margin: 0 1rem;
-
-          &:after {
-            width: 100%;
-            left: 0;
-            background-color:rgba(255,255,255,.5);
-            opacity: 1;
-          }
+    #intro {
+        min-height: 668px !important;
+        
+        h1 {
+            font-size: 3.5rem !important;
         }
-      }
     }
 
-    &:hover {
-      background-color: transparent;
-    }
-  }
-
-  .content {
-    padding-left: 1rem;
-  }
-
-  #hero {
-    padding: 2em 7.5%;
-    min-height: 200px;
-    background-image:
-      linear-gradient(-45deg, #93a5cf 0%, #e4efe9 100%);
-    background-repeat:
-      no-repeat;
-    background-position:
-      center;
-    background-size:
-      auto;
-
-    &:after {
-      display: none;
+    #code {
+        top: 962px !important;
     }
 
-    .titles {
-      transform: translateY(0);
-      margin-top: -35%;
-
-      h1 {
-        font-size: 2rem;
-        line-height: 1.2;
-        padding: 0;
-      }
-
-      h2 {
-        font-size: 1rem;
-        margin-bottom: 5rem;
-        padding: 0;
-      }
-
-      .button {
-        margin: 0 auto;
-      }
+    #kubernetes {
+        top: 1880px !important;
     }
 
-    #draftanimation_hype_container {
-      display: none !important;
-    }
-  }
-
-  #code {
-    padding-top: 3rem;
-    padding-bottom: 5rem;
-
-    .example-orbit-content {
-      ul li {
-        display: none;
-
-        &:first-child {
-          display: block;
-        }
-      }
+    #video {
+        top: 2610px !important;
     }
 
-    h4 {
-      margin-top: 40px;
-    }
-  }
-
-  #kubernetes {
-    padding-top: 3rem;
-    padding-bottom: 5rem;
-    background:
-      linear-gradient(110deg, white 20%, #f0f0f0);
-    background-size:
-      auto;
-
-      .cli {
-        width: 90%;
-        right: 5%;
-        margin-top: 0;
-
-        pre {
-          font-size: 10px;
-        }
-      }
-  }
-
-  #kashti {
-    padding-bottom: 5rem;
-
-    .uipic {
-      margin-top: 20px;
-      margin-bottom: 60px;
-      max-width: 95%;
+    #community {
+        top: 2520px !important;
     }
 
-  }
+    #v2 {
+        top: 3120px !important;
+    }
+}
 
-  #info,
-  .feature,
-  .feature-complexity,
-  .feature-language {
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
-    min-height: 200px;
-
-    h3 {
-      font-size: 2rem;
+/* widescreen and up */
+@media screen and (min-width: 1216px) {
+    .pipe-wrapper {
+        min-height: 1850px !important;
     }
 
-    img {
-      display: none;
+}
+
+/* fullhd and up */
+@media screen and (min-width: 1408px) {
+    .pipe-wrapper {
+        min-height: 1850px !important;
     }
-  }
 
-  footer {
-    ul {
-      margin: 1rem 0 2rem 0;
-
-      li {
-        display: inline-block;
-
-        a {
-          margin: 0 1.5rem 0 0;
-        }
-      }
-    }
-  }
 }

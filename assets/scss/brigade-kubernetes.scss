@@ -1,54 +1,44 @@
 #kubernetes {
-  padding-top: 7rem;
-  padding-bottom: 12rem;
-  min-height: 600px;
-  background:
-    // url('../images/pipes-pattern-02.svg') no-repeat left 52px,
-    url('../images/pipes-pattern-03.png') no-repeat center -162px,
-    linear-gradient(110deg, white 20%, #f0f0f0);
-  background-size:
-    // 126px,
-    2130px,
-    auto;
+  padding-top: 2.67rem;
+  // padding-bottom: 12rem;
 
   h2, p {
     margin-left: 1.5rem;
   }
 
-  ul {
-    // column-count: 2;
-
-    li {
-      padding: 0 25% 0.5rem 2rem;
-      background: url(../images/asterisk-01.svg) no-repeat 0 4px;
-
-      &:nth-child(even) {
-        background: url(../images/asterisk-01.svg) no-repeat 0 4px;
-      }
-
-      &:nth-child(odd) {
-        background: url(../images/asterisk-02.svg) no-repeat 0 4px;
-      }
-    }
-  }
-
   p {
     padding-right: 10%;
+    max-width: 28.5em;
   }
 
   .cli {
-    padding: 0.1em;
-    margin-top: 54px;
-    position: absolute;
-    right: -2.5%;
+    // padding: 0.1em;
+    // margin-top: 84px;
+    width: 175%;
+    margin-top: 2rem;
+    // margin-left: -12%;
+    position: relative;
+    z-index: 850;
+    
+    &:before {
+      width: 100%;
+      height: 2rem;
+      top: -1.5rem;
+      background: lighten($mid, 20%);
+      border: 1px solid $mid;
+      border-radius: 0.67em 0.67em 0 0;
+      content: " ";
+      position: absolute;
+      display: block;
+      z-index: -10;
+    }
 
     pre {
-      background: url('../images/cli.svg') no-repeat 0 0;
-      background-size: 98%;
-      min-height: 210px;
-      padding: 45px 1.5rem 0;
+      background: #383948;
+      padding: 15px 1.5rem 0;
       font-size: 14px;
       color: darken($yellow, 27.5%);
+      border-radius: 0 0 0.67em 0.67em;
 
       em {
         font-style: normal;
