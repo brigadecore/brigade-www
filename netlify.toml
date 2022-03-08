@@ -1,6 +1,6 @@
 [build]
   publish = "dist/"
-  command = "parcel build index.html"
+  command = "parcel build index.html logo.png"
 
 [build.environment]
   NODE_VERSION = "16.13.2"

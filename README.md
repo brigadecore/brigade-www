@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4053560a-ff76-48ce-9841-5b145db53fb5/deploy-status)](https://app.netlify.com/sites/brigade-sh/deploys)
 
-<img width="100" align="left" src="assets/images/favicon.png">
+<img width="100" align="left" src="logo.png">
 
 [brigade.sh](https://brigade.sh) is the main website for [the Brigade Project](https://github.com/brigadecore/brigade).
 
