@@ -12,11 +12,11 @@
   
     <!-- twitter card-->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:creator" content="@helmpack" />
-    <meta name="twitter:site" content="@helmpack" />
+    <meta name="twitter:site" content="@brigadecore" />
     <meta name="twitter:title" content="Brigade | Event-driven scripting for Kubernetes." />
     <meta name="twitter:description" content="Brigade is a tool for running scriptable automated tasks in the cloud. Brigade runs as part of a Kubernetes cluster." />
-    <meta name="twitter:image" content="//brigade.sh/design/avatar.png" />
+    <meta name="twitter:image" content="https://brigade.sh/logo.png" />
+    
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
   
     <!-- load assets -->
@@ -349,9 +349,10 @@
   
   helm install brigade \
   oci://ghcr.io/brigadecore/brigade \
-  --version v2.0.0 \
+  --version v2.3.1 \
   --create-namespace \
-  --namespace brigade
+  --namespace brigade \
+  --wait
   
   <em>// check Brigade status</em>
   helm get all brigade --namespace brigade
