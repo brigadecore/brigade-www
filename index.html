@@ -281,9 +281,10 @@
   
   helm install brigade \
   oci://ghcr.io/brigadecore/brigade \
-  --version v2.0.0 \
+  --version v2.3.1 \
   --create-namespace \
-  --namespace brigade
+  --namespace brigade \
+  --wait
   
   <em>// check Brigade status</em>
   helm get all brigade --namespace brigade
