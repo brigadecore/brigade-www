@@ -8,23 +8,14 @@
 
 <br clear="left"/>
 
-## Site Development
-
-This is a simple one-page site; using [parcel](https://parceljs.org) to build assets. 
-
-```shell
-# 1 install packages
-$ yarn
-
-# 2 compile the site
-$ yarn parcel index.html
-```
-
-The site runs at [localhost:1234](http://localhost:1234/)
-
-## Deploying
-
-The site is deployed via the CNCF Projects [Netlify](https://app.netlify.com/sites/brigade-sh/deploys) account. Changes to the `main` branch are auto-deployed to the live environment.
+> 🏠&nbsp;&nbsp;If you're looking to edit the main brigade.sh site, you've come
+> to the right place! Proceed to the [Contributing](CONTRIBUTING.md) document.
+>
+> 📢&nbsp;&nbsp;If you're looking to create a new blog post, go 
+> [here](https://github.com/brigadecore/blog).
+>
+> 📚&nbsp;&nbsp;For documentation edits to docs.brigade.sh go
+> [here](https://github.com/brigadecore/brigade/tree/master/docs).
 
 ## Contributing
 
