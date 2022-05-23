@@ -81,22 +81,6 @@ small {
   @include vertical-align;
 }
 
-.sticky-banner {
-  text-align: center;
-  padding: 0.5rem 0 0.675rem;
-  background-color: $bluem;
-  color: white;
-  z-index: 1801;
-  position: relative;
-  left: 0;
-  right:0;
-
-  a {
-    color: white;
-    font-weight: 600;
-  }
-}
-
 .navbar-burger {
   position: absolute;
   z-index: 1301;
