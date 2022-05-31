@@ -279,18 +279,13 @@ footer {
     }
 
     strong {
-      background: url(../../assets/images/brigade-event-icon.png) no-repeat 0 0;
+      background: url(../../assets/images/favicon.png) no-repeat 0 0;
       background-size: contain;
       width: 8vw;
       margin-left: -1rem;
       min-height: 8rem;
       display: inline-block;
       position: relative;
-
-      &:hover {
-        background: url(../../assets/images/favicon.png) no-repeat 0 0;
-        background-size: contain;
-      }
     }
 
     &:last-of-type {
