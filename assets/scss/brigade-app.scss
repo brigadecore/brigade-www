@@ -89,10 +89,10 @@ small {
 .navbar {
   background: transparent;
   padding-top: 2rem;
-  
+
   .navbar-brand {
     margin-left: 12.5vw;
-    
+
     img {
       min-height: 130px;
     }
@@ -206,7 +206,7 @@ small {
         padding-left: 2.5rem;
 
         &:nth-of-type(odd) {
-          background: url(../images/asterisk-02.svg) 0 4px no-repeat; 
+          background: url(../images/asterisk-02.svg) 0 4px no-repeat;
         }
       }
     }
@@ -368,7 +368,7 @@ svg {
     display: inline-block;
     content: " ";
     position: absolute;
-    top: -12vw;
+    top: -10rem;
     left: 0;
     right: 0;
     bottom: 0;
