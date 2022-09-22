@@ -5,20 +5,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
     <title>Brigade | Event-driven scripting (for Kubernetes)</title>
     <meta name="description" content="Brigade is a platform for running scriptable, automated tasks in the cloud. Brigade runs as part of a Kubernetes cluster.">
     <meta name="keywords" content="Brigade,Kubernetes,CNCF,Kube,Deploy,CI,CD,Pipeline,Scripting,Automating,Webhook,Events,k8s,Containers,Helm,Simple,Cloud,Application,App,Brigade.sh">
-  
+
     <!-- twitter card-->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@brigadecore" />
     <meta name="twitter:title" content="Brigade | Event-driven scripting for Kubernetes." />
     <meta name="twitter:description" content="Brigade is a platform for running scriptable, automated tasks in the cloud. Brigade runs as part of a Kubernetes cluster." />
     <meta name="twitter:image" content="https://brigade.sh/logo.png" />
-    
+
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
-  
+
     <!-- load assets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,8 +94,19 @@
     </script>
     <!-- END: Google Analytics -->
   </head>
-  
+
   <body>
+
+    <section class="hero is-danger">
+      <div class="container">
+        <div class="hero-body">
+          <p class="title">
+            The Brigade project is <em><a href="https://www.cncf.io/archived-projects">archived</a></em>.
+            <a href="https://github.com/cncf/toc/pull/915">Learn&nbsp;more</a>.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <nav class="navbar is-transparent" role="navigation" aria-label="main navigation" id="topbar">
       <div class="navbar-brand">
@@ -109,7 +120,7 @@
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
-  
+
       <div class="navbar-menu" id="navbarTop">
         <div class="navbar-end">
           <li class="navbar-item"><a href="https://brigade.sh/" title="Brigade Home">Home</a></li>
@@ -124,7 +135,7 @@
       <div class="columns is-centered">
         <div class="column is-two-thirds">
           <h1>Brigade is a platform for running
-            scriptable, automated tasks.</h1>   
+            scriptable, automated tasks.</h1>
         </div>
       </div>
 
@@ -312,8 +323,8 @@
               <h4>Example use cases:</h4>
 
               <p>Check out <a href="https://docs.brigade.sh/" target="_blank">our docs</a> for more. <img src="assets/images/arrow.png" class="arrow" /></p>
-            </div>          
-    
+            </div>
+
           </div>
         </div>
       </div>
@@ -323,10 +334,10 @@
       <div class="row">
         <div class="columns is-mobile">
           <div class="is-half-desktop column">
-    
+
             <h2>Runs inside your cluster</h2>
             <p>By running Brigade as a service inside your <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> cluster, you can harness the power of millions of available Docker images.</p>
-  
+
             <p>Brigade can be used to chain containers together to build processing pipelines.</p>
             <ul class="fancy">
               <li>Watch for incoming requests from services like GitHub, Docker Hub, and Bitbucket</li>
@@ -336,33 +347,33 @@
 
             <iframe width="100%" height="315" class="is-hidden-tablet" src="https://www.youtube-nocookie.com/embed/EqJ9_k56Q3U?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
-          
+
           <div class="is-half column is-hidden-touch">
             <aside class="cli">
               <pre>
   <em>// install Brigade using Helm v3.7.0+</em>
   export HELM_EXPERIMENTAL_OCI=1
-  
+
   helm install brigade \
   oci://ghcr.io/brigadecore/brigade \
   --version v2.6.0 \
   --create-namespace \
   --namespace brigade \
   --wait
-  
+
   <em>// check Brigade status</em>
   helm get all brigade --namespace brigade
               </pre>
             </aside>
           </div>
-    
+
         </div>
       </div>
     </section>
 
     <div class="row fullwidth content is-hidden-mobile" id="video">
       <div class="columns is-mobile">
-        <div class="column retrobox is-one-third is-left">          
+        <div class="column retrobox is-one-third is-left">
           <iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/EqJ9_k56Q3U?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <p><a href="https://www.youtube.com/channel/UCjeocwsYKby4BFVT8IWlr-A">See more Brigade videos</a></p>
         </div>
@@ -386,7 +397,7 @@
           <h2>What's new in Brigade v2?</h2>
 
           <p>Brigade has been <a href="https://github.com/brigadecore/brigade/tree/master/2.0-PROPOSAL">re-designed</a> from the ground up, bringing some exciting features and notable improvements over v1. However, much of Brigade's core functionality remains the same. We're still focused on cloud-native, event-driven scripting. Here are some of the highlights:</p>
-          
+
           <ul class="fancy">
             <li>Brigade continues to run on Kubernetes; however, users of Brigade never have to interact with Kubernetes directly.</li>
             <li>Brigade offers full management of user and service account authorization/authentication.</li>
@@ -464,13 +475,13 @@
               <li><a href="https://hackmd.io/KyyZMHyzSzGEiQY0ZHPqgw?view">Community Meeting</a></li>
               <li><a href="https://github.com/brigadecore/community/blob/main/contributing.md">Contributing</a></li>
 
-              
+
             </ul>
 
           </div>
           <div class="column">
             <div class="box cncf">
-              <p>Brigade is a <strong>Cloud Native Computing Foundation</strong> sandbox project.</p>
+              <p>Brigade is a <strong>Cloud Native Computing Foundation</strong> archived project.</p>
 
               <p><a href="https://www.cncf.io/projects/brigade/" title="Cloud Native Computing Foundation" target="_blank"><img src="assets/images/cncf-color.png" alt="We are a Cloud Native Computing Foundation sandbox project" /></a></p>
             </div>
