@@ -1,3 +1,6 @@
+> # ⚠️ Brigade is an [_archived_ CNCF project](https://www.cncf.io/archived-projects/).
+<br>
+
 # brigade.sh
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4053560a-ff76-48ce-9841-5b145db53fb5/deploy-status)](https://app.netlify.com/sites/brigade-sh/deploys)
@@ -11,7 +14,7 @@
 > 🏠&nbsp;&nbsp;If you're looking to edit the main brigade.sh site, you've come
 > to the right place! Proceed to the [Contributing](CONTRIBUTING.md) document.
 >
-> 📢&nbsp;&nbsp;If you're looking to create a new blog post, go 
+> 📢&nbsp;&nbsp;If you're looking to create a new blog post, go
 > [here](https://github.com/brigadecore/blog).
 >
 > 📚&nbsp;&nbsp;For documentation edits to docs.brigade.sh go
